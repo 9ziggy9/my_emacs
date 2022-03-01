@@ -1,5 +1,6 @@
 * My personal emacs configuration
 
+** INSTALLATION
 #+NAME: install
 #+BEGIN_SRC
 mkdir ~/.emacs.d
