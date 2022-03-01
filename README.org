@@ -1,6 +1,7 @@
 * My personal emacs configuration
 
-```
+#+NAME: install
+#+BEGIN_SRC
 mkdir ~/.emacs.d
 git clone https://github.com/9ziggy9/my_emacs ~/.emacs.d
-```
+#+END_SRC
