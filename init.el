@@ -108,7 +108,6 @@
   :bind (("<escape>" . keyboard-escape-quit))
   :init
   (setq evil-want-keybinding nil)
-  (setq evil-undo-system 'undo-fu)
   :config
   (evil-mode 1))
 
@@ -118,15 +117,25 @@
   (setq evil-want-integration t)
   (evil-collection-init))
 
+;; CUSTOM FUNCTIONS
+(defun org-browse ()
+  (interactive)
+  (let ((default-directory (file-truename (expand-file-name "~/org/"))))
+    (call-interactively #'counsel-find-file)))
+
 ;; HERE MAY BE DRAGONS: KEYBINDINGS
 (use-package general)
-;(general-define-key
-; "C-b" 'counsel-switch-buffer) ;; CHANGE BUFFER PROMPT OVERWRITES DEFAULTS
 (general-create-definer my-leader-def
   :keymaps '(normal)
   :prefix "SPC")
 (my-leader-def
- "b" 'counsel-switch-buffer)
+ "ee" 'eval-buffer
+ ":" 'counsel-M-x 
+ "n" 'org-browse
+ "b" 'counsel-switch-buffer
+ "hk" 'describe-key
+ "hf" 'describe-function
+ "hv" 'describe-variable)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
