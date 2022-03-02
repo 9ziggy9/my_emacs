@@ -10,7 +10,7 @@
 (set-face-attribute 'default nil :font "FiraCode Nerd Font" :height 110)
 
 ;; THEMING
-(load-theme 'tango-dark)
+(load-theme 'green-is-the-new-black t)
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -42,6 +42,9 @@
 ;; SEARCH: find in current file! Bound to C-s
 (use-package swiper)
 
+;; particularly useful for switching themes: M-x counsel themes
+(use-package counsel)
+
 ;; completion framework in find files, etc, can also try
 ;; helm, ivy is more minimalistic.
 (use-package ivy
@@ -68,7 +71,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(delete-selection-mode nil)
- '(package-selected-packages '(swiper ivy command-log-mode use-package)))
+ '(package-selected-packages
+   '(green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
