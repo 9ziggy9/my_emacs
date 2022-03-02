@@ -12,6 +12,9 @@
 ;; THEMING
 (load-theme 'tango-dark)
 
+;; Make ESC quit prompts
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
 ;; PACKAGE MANAGEMENT
 (require 'package)
 
@@ -28,13 +31,44 @@
 
 (require 'use-package)
 (setq use-package-always-ensure t)
+
+;; INSTALL PACKAGES
+
+;; for command logging, use clm/toggle-command-...
+;; to open buffer which displays what commands are
+;; actually associated with the keybindings you are using!
+(use-package command-log-mode)
+
+;; SEARCH: find in current file! Bound to C-s
+(use-package swiper)
+
+;; completion framework in find files, etc, can also try
+;; helm, ivy is more minimalistic.
+(use-package ivy
+  :diminish
+  :bind (("C-s" . swiper)
+	 :map ivy-minibuffer-map
+	 ("TAB" . ivy-alt-done)
+	 ("C-l" . ivy-alt-done)
+	 ("C-j" . ivy-next-line)
+	 ("C-k" . ivy-previous-line)
+	 :map ivy-switch-buffer-map
+	 ("C-k" . ivy-previous-line)
+	 ("C-l" . ivy-done)
+	 ("C-d" . ivy-switch-buffer-kill)
+	 :map ivy-reverse-i-search-map
+	 ("C-k" . ivy-previous-line)
+	 ("C-d" . ivy-reverse-i-search-kill))
+  :config
+  (ivy-mode 1))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(delete-selection-mode nil)
- '(package-selected-packages '(use-package)))
+ '(package-selected-packages '(swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
