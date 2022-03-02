@@ -32,8 +32,17 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;; INSTALL PACKAGES
+;; LINE NUMBERS
+(column-number-mode)
+(global-display-line-numbers-mode t)
+(setq display-line-numbers 'relative)
+;; Hook for certain modes to disable line numbers
+(dolist (mode '(org-mode-hook
+		term-mode-hook
+		eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
+;; INSTALL PACKAGES
 ;; for command logging, use clm/toggle-command-...
 ;; to open buffer which displays what commands are
 ;; actually associated with the keybindings you are using!
