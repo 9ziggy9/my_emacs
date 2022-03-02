@@ -15,6 +15,12 @@
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
+;; Autofocus/maximize help windows
+(add-to-list 'display-buffer-alist
+	     '("*Apropos*" display-buffer-same-window))
+(add-to-list 'display-buffer-alist
+	     '("*Help*" display-buffer-same-window))
+
 ;; PACKAGE MANAGEMENT
 (require 'package)
 
@@ -114,8 +120,13 @@
 
 ;; HERE MAY BE DRAGONS: KEYBINDINGS
 (use-package general)
-(general-define-key
- "C-b" 'counsel-switch-buffer) ;; CHANGE BUFFER PROMPT OVERWRITES DEFAULTS
+;(general-define-key
+; "C-b" 'counsel-switch-buffer) ;; CHANGE BUFFER PROMPT OVERWRITES DEFAULTS
+(general-create-definer my-leader-def
+  :keymaps '(normal)
+  :prefix "SPC")
+(my-leader-def
+ "b" 'counsel-switch-buffer)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
