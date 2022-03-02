@@ -51,7 +51,12 @@
 (use-package swiper)
 
 ;; particularly useful for switching themes: M-x counsel themes
-(use-package counsel)
+(use-package counsel
+  :bind (("M-x" . counsel-M-x)
+	 ("C-x b" . counsel-ibuffer)
+	 ("C-x C-f" . counsel-find-file)
+	 :map minibuffer-local-map
+	 ("C-r" . 'counsel-minibuffer-history)))
 
 ;; completion framework in find files, etc, can also try
 ;; helm, ivy is more minimalistic.
@@ -73,6 +78,11 @@
   :config
   (ivy-mode 1))
 
+;; rich mode for ivy (description of commands)
+(use-package ivy-rich
+  :init
+  (ivy-rich-mode 1))
+
 ;; rainbow parens/brackets
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
@@ -83,7 +93,8 @@
   :init (which-key-mode)
   :diminish which-key-mode
   :config
-  (setq which-key-idle-delay 0.3))
+  (setq which-key-idle-delay 0.1)
+  (define-key which-key-mode-map (kbd "C-x n") 'which-key-C-h-dispatch))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -94,7 +105,7 @@
    ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
+   '(ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
