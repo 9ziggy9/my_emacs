@@ -40,8 +40,9 @@
 
 ;; LINE NUMBERS
 (column-number-mode)
+(setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode t)
-(setq display-line-numbers 'relative) ;; may need :config block
+
 ;; Hook for certain modes to disable line numbers
 (dolist (mode '(term-mode-hook
 		eshell-mode-hook))
@@ -157,7 +158,8 @@
     "hv" 'describe-variable
     "SPC" '(closure (t) (&rest _)
 		    (interactive)
-		    (let ((current-prefix-arg t)) (evil-avy-goto-char-timer))))
+		    (let ((current-prefix-arg t))
+		     (evil-avy-goto-char-timer))))
 
 ;;;;;;;; DO NOT TOUCH ;;;;;;;;
 (custom-set-variables
