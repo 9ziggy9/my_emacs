@@ -115,6 +115,10 @@
   (setq which-key-idle-delay 0.1)
   (define-key which-key-mode-map (kbd "C-x n") 'which-key-C-h-dispatch))
 
+;; UNDO TREE
+(use-package undo-tree)
+(global-undo-tree-mode)
+
 ;; EVIL MODE
 (use-package evil
   :demand t
@@ -122,6 +126,7 @@
   :init
   (setq evil-want-keybinding nil)
   :config
+  (evil-set-undo-system 'undo-tree)
   (evil-mode 1))
 
 (use-package evil-collection
