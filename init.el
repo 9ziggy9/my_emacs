@@ -123,12 +123,15 @@
   (let ((default-directory (file-truename (expand-file-name "~/org/"))))
     (call-interactively #'counsel-find-file)))
 
+;; HYDRA FUNCTIONS
+
 ;; HERE MAY BE DRAGONS: KEYBINDINGS
 (use-package general)
 (general-create-definer my-leader-def
   :keymaps '(normal)
   :prefix "SPC")
 (my-leader-def
+ "c" 'compile
  "ee" 'eval-buffer
  ":" 'counsel-M-x 
  "n" 'org-browse
@@ -136,6 +139,16 @@
  "hk" 'describe-key
  "hf" 'describe-function
  "hv" 'describe-variable)
+
+(use-package helpful
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-callable)
+  :bind
+  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([remap describe-key] . helpful-key))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -146,7 +159,7 @@
    ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
+   '(helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
