@@ -117,6 +117,17 @@
   (setq evil-want-integration t)
   (evil-collection-init))
 
+;; HELPFUL DOCUMENTATION
+(use-package helpful
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-callable)
+  :bind
+  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([remap describe-key] . helpful-key))
+
 ;; CUSTOM FUNCTIONS
 (defun org-browse ()
   (interactive)
@@ -126,9 +137,10 @@
 ;; HYDRA FUNCTIONS
 
 ;; HERE MAY BE DRAGONS: KEYBINDINGS
+;; general SPC buffer
 (use-package general)
 (general-create-definer my-leader-def
-  :keymaps '(normal)
+  :keymaps '(normal visual)
   :prefix "SPC")
 (my-leader-def
     "s" 'swiper
@@ -142,16 +154,7 @@
     "hf" 'describe-function
     "hv" 'describe-variable)
 
-(use-package helpful
-  :custom
-  (counsel-describe-function-function #'helpful-callable)
-  (counsel-describe-variable-function #'helpful-callable)
-  :bind
-  ([remap describe-function] . counsel-describe-function)
-  ([remap describe-command] . helpful-command)
-  ([remap describe-variable] . counsel-describe-variable)
-  ([remap describe-key] . helpful-key))
-
+;;;;;;;; DO NOT TOUCH ;;;;;;;;
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
