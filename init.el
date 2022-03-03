@@ -2,7 +2,6 @@
 (setq inhibit-startup-message t)
 (scroll-bar-mode -1) ;; Disable visible scrollbar
 (tool-bar-mode -1) ;; Disable the toolbar
-(tooltip-mode -1) ;; Disable tooltips
 (set-fringe-mode 10) ;; Give some breathing room
 (menu-bar-mode -1) ;; Disable the menu bar
 
@@ -131,13 +130,15 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
+;; TODO: MULTI-CURSOR
+
 ;; CUSTOM FUNCTIONS
 (defun org-browse ()
   (interactive)
   (let ((default-directory (file-truename (expand-file-name "~/org/"))))
     (call-interactively #'counsel-find-file)))
 
-;; HYDRA FUNCTIONS
+;; TODO: HYDRA FUNCTIONS
 
 ;; HERE MAY BE DRAGONS: KEYBINDINGS
 ;; general SPC buffer
@@ -146,12 +147,14 @@
   :keymaps '(normal visual)
   :prefix "SPC")
 (my-leader-def
+    "t" 'term
     "s" 'swiper
     "c" 'compile
     "ee" 'eval-buffer
     ":" 'counsel-M-x 
     "n" 'org-browse
     "bb" 'counsel-switch-buffer
+    "bk" 'kill-buffer-and-window
     "hc" 'describe-command
     "hk" 'describe-key
     "hf" 'describe-function
@@ -159,7 +162,7 @@
     "SPC" '(closure (t) (&rest _)
 		    (interactive)
 		    (let ((current-prefix-arg t))
-		     (evil-avy-goto-char-timer))))
+			(evil-avy-goto-char-timer))))
 
 ;;;;;;;; DO NOT TOUCH ;;;;;;;;
 (custom-set-variables
@@ -171,7 +174,7 @@
    ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
+   '(multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
