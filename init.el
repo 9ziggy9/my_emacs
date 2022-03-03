@@ -148,7 +148,7 @@
 (use-package button-lock)
 (global-fixmee-mode 1)
 
-;; TODOO: MULTI-CURSOR
+;; TODOOOO: MULTI-CURSOR
 (use-package evil-mc)
 (evil-mc-mode 1)
 (use-package evil-multiedit)
@@ -184,7 +184,13 @@
 ;; commenting in visual select
 (define-key evil-visual-state-map (kbd "g") 'comment-or-uncomment-region)
 
-;; TODO: HYDRA BINDINGS
+;; window movement
+(define-key evil-normal-state-map (kbd "C-<down>") 'windmove-down)
+(define-key evil-normal-state-map (kbd "C-<up>") 'windmove-up)
+(define-key evil-normal-state-map (kbd "C-<left>") 'windmove-left)
+(define-key evil-normal-state-map (kbd "C-<right>") 'windmove-right)
+
+;; HYDRA BINDINGS
 (use-package hydra)
 (defhydra hydra-zoom (global-map "C-+")
   "zoom"
