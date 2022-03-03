@@ -166,6 +166,7 @@
     "s" 'swiper
     "c" 'compile
     "ee" 'eval-buffer
+    "el" 'eval-last-sexp
     ":" 'counsel-M-x 
     "n" 'custom/org-browse
     "f"  'counsel-find-file
@@ -178,7 +179,8 @@
     "SPC" '(closure (t) (&rest _)
 		    (interactive)
 		    (let ((current-prefix-arg t))
-			(stuff-avy-goto-char-timer))))
+			(evil-avy-goto-char-timer))))
+;; commenting in visual select
 (define-key evil-visual-state-map (kbd "g") 'comment-or-uncomment-region)
 
 ;; TODO: HYDRA BINDINGS
