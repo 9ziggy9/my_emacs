@@ -196,7 +196,9 @@
 (define-key evil-normal-state-map (kbd "C-k") 'evil-mc-undo-last-added-cursor)
 (define-key evil-normal-state-map (kbd "C-l") 'evil-multiedit-match-and-next)
 (define-key evil-normal-state-map (kbd "C-h") 'evil-multiedit-abort)
-(define-key evil-normal-state-map (kbd "<escape>") 'evil-mc-undo-all-cursors)
+(define-key evil-normal-state-map (kbd "<escape>") '(lambda () (interactive)
+						     (evil-mc-undo-all-cursors)
+						     (evil-multiedit-abort)))
 
 ;; HYDRA BINDINGS
 (use-package hydra)
