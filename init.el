@@ -182,8 +182,6 @@
 		    (interactive)
 		    (let ((current-prefix-arg t))
 			(evil-avy-goto-char-timer))))
-;; commenting in visual select
-(define-key evil-visual-state-map (kbd "g") 'comment-or-uncomment-region)
 
 ;; window movement
 (define-key evil-normal-state-map (kbd "<down>") 'windmove-down)
@@ -199,6 +197,8 @@
 (define-key evil-normal-state-map (kbd "<escape>") '(lambda () (interactive)
 						     (evil-mc-undo-all-cursors)
 						     (evil-multiedit-abort)))
+;; commenting in visual select
+(define-key evil-visual-state-map (kbd "g") 'comment-or-uncomment-region)
 
 ;; HYDRA BINDINGS
 (use-package hydra)
