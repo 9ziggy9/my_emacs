@@ -1,3 +1,4 @@
+(load "~/.emacs.d/custom.el")
 ;; DISABLE STUPID SCROLLBARS AND SUCH
 (setq inhibit-startup-message t)
 (scroll-bar-mode -1) ;; Disable visible scrollbar
@@ -21,13 +22,16 @@
 	     '("*Help*" display-buffer-same-window))
 
 ;; PRETTIFY SYMBOLS
-(global-prettify-symbols-mode t)
-(setq prettify-symbols-alist '(("lambda" . λ)
-				("->" . →)
-				("=>" . ⇒)
-				("/=" . ≠)
-				("<=" . ≤)
-				(">=" . ≥)))
+(global-prettify-symbols-mode +1)
+(setq prettify-symbols-alist '(("lambda" . ?λ)
+				("->" . ?→)
+				("=>" . ?⇒)
+				("/=" . ?≠)
+				("<=" . ?≤)
+				(">=" . ?≥)))
+
+;; AUTOPAIRS
+(electric-pair-mode t)
 
 ;; PACKAGE MANAGEMENT
 (require 'package)
@@ -142,10 +146,6 @@
 ;; TODO: MULTI-CURSOR
 
 ;; CUSTOM FUNCTIONS
-(defun org-browse ()
-  (interactive)
-  (let ((default-directory (file-truename (expand-file-name "~/org/"))))
-    (call-interactively #'counsel-find-file)))
 
 ;; TODO: HYDRA FUNCTIONS
 
@@ -161,7 +161,7 @@
     "c" 'compile
     "ee" 'eval-buffer
     ":" 'counsel-M-x 
-    "n" 'org-browse
+    "n" 'custom/org-browse
     "f"  'counsel-find-file
     "bb" 'counsel-switch-buffer
     "bk" 'kill-buffer-and-window
@@ -184,7 +184,7 @@
    ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
+   '(autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
