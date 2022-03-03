@@ -14,11 +14,20 @@
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
-;; Autofocus/maximize help windows
+;; AUTOFOCUS/MAXIMIZE HELP WINDOWS
 (add-to-list 'display-buffer-alist
 	     '("*Apropos*" display-buffer-same-window))
 (add-to-list 'display-buffer-alist
 	     '("*Help*" display-buffer-same-window))
+
+;; PRETTIFY SYMBOLS
+(global-prettify-symbols-mode t)
+(setq prettify-symbols-alist '(("lambda" . λ)
+				("->" . →)
+				("=>" . ⇒)
+				("/=" . ≠)
+				("<=" . ≤)
+				(">=" . ≥)))
 
 ;; PACKAGE MANAGEMENT
 (require 'package)
@@ -153,6 +162,7 @@
     "ee" 'eval-buffer
     ":" 'counsel-M-x 
     "n" 'org-browse
+    "f"  'counsel-find-file
     "bb" 'counsel-switch-buffer
     "bk" 'kill-buffer-and-window
     "hc" 'describe-command
