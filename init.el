@@ -161,22 +161,22 @@
   :keymaps '(normal visual)
   :prefix "SPC")
 (my-leader-def
-    "p" 'custom/scratch-toggle
-    "T" 'fixmee-view-listing
-    "t" 'term
-    "s" 'swiper
+    "p" '(custom/scratch-toggle :which-key "scratchpad")
+    "T" '(fixmee-view-listing :which-key "todo list")
+    "t" '(term :which-key "terminal")
+    "s" '(swiper :which-key "search file")
     "c" 'compile
-    "ee" 'eval-buffer
-    "el" 'eval-last-sexp
-    ":" 'counsel-M-x 
-    "n" 'custom/org-browse
-    "f"  'counsel-find-file
-    "bb" 'counsel-switch-buffer
-    "bk" 'kill-buffer-and-window
-    "hc" 'describe-command
-    "hk" 'describe-key
-    "hf" 'describe-function
-    "hv" 'describe-variable
+    "ee" '(eval-buffer :which-key "evaluate buffer")
+    "el" '(eval-last-sexp :which-key "evaluate to point")
+    ":" '(counsel-M-x :which-key "M-x")
+    "n" '(custom/org-browse :which-key "notes")
+    "f"  '(counsel-find-file :which-key "find file")
+    "bb" '(counsel-switch-buffer :which-key "buffer list")
+    "bk" '(kill-buffer-and-window :which-key "kill/close buffer")
+    "hc" '(describe-command :which-key "describe command")
+    "hk" '(describe-key :which-key "describe key")
+    "hf" '(describe-function :which-key "describe function")
+    "hv" '(describe-variable :which-key "describe variable")
     "SPC" '(closure (t) (&rest _)
 		    (interactive)
 		    (let ((current-prefix-arg t))
