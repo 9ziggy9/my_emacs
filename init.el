@@ -131,14 +131,16 @@
   :keymaps '(normal)
   :prefix "SPC")
 (my-leader-def
- "c" 'compile
- "ee" 'eval-buffer
- ":" 'counsel-M-x 
- "n" 'org-browse
- "b" 'counsel-switch-buffer
- "hk" 'describe-key
- "hf" 'describe-function
- "hv" 'describe-variable)
+    "s" 'swiper
+    "c" 'compile
+    "ee" 'eval-buffer
+    ":" 'counsel-M-x 
+    "n" 'org-browse
+    "bb" 'counsel-switch-buffer
+    "hc" 'describe-command
+    "hk" 'describe-key
+    "hf" 'describe-function
+    "hv" 'describe-variable)
 
 (use-package helpful
   :custom
