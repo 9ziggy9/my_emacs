@@ -143,14 +143,14 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
-;; PRIORITIZATION TOOL
+;; TOD0 TOOL
 (use-package fixmee)
 (use-package button-lock)
 (global-fixmee-mode 1)
 
-;; TODO: MULTI-CURSOR
-
-;; TODOO: HYDRA
+;; TODOO: MULTI-CURSOR
+(use-package evil-mc)
+(evil-mc-mode 1)
 
 ;; KEYBINDINGS
 ;; general SPC buffer
@@ -178,6 +178,13 @@
 		    (let ((current-prefix-arg t))
 			(evil-avy-goto-char-timer))))
 
+;; TODO: HYDRA BINDINGS
+(use-package hydra)
+(defhydra hydra-zoom (global-map "C-+")
+  "zoom"
+  ("o" text-scale-decrease "out")
+  ("i" text-scale-increase "in"))
+
 ;;;;;;;; DO NOT TOUCH ;;;;;;;;
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -188,7 +195,7 @@
    ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
+   '(hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
