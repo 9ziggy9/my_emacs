@@ -1,4 +1,5 @@
 (load "~/.emacs.d/custom.el")
+
 ;; DISABLE STUPID SCROLLBARS AND SUCH
 (setq inhibit-startup-message t)
 (scroll-bar-mode -1) ;; Disable visible scrollbar
@@ -33,6 +34,15 @@
 ;; AUTOPAIRS
 (electric-pair-mode t)
 
+;; LINE NUMBERS
+(column-number-mode)
+(setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode t)
+;; Hook for certain modes to disable line numbers
+(dolist (mode '(term-mode-hook
+		eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
 ;; PACKAGE MANAGEMENT
 (require 'package)
 
@@ -49,16 +59,6 @@
 
 (require 'use-package)
 (setq use-package-always-ensure t)
-
-;; LINE NUMBERS
-(column-number-mode)
-(setq display-line-numbers-type 'relative)
-(global-display-line-numbers-mode t)
-
-;; Hook for certain modes to disable line numbers
-(dolist (mode '(term-mode-hook
-		eshell-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;; INSTALL PACKAGES
 ;; for command logging, use clm/toggle-command-...
@@ -143,19 +143,23 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
+;; PRIORITIZATION TOOL
+(use-package fixmee)
+(use-package button-lock)
+(global-fixmee-mode 1)
+
 ;; TODO: MULTI-CURSOR
 
-;; CUSTOM FUNCTIONS
+;; TODOO: HYDRA
 
-;; TODO: HYDRA FUNCTIONS
-
-;; HERE MAY BE DRAGONS: KEYBINDINGS
+;; KEYBINDINGS
 ;; general SPC buffer
 (use-package general)
 (general-create-definer my-leader-def
   :keymaps '(normal visual)
   :prefix "SPC")
 (my-leader-def
+    "T" 'fixmee-view-listing
     "t" 'term
     "s" 'swiper
     "c" 'compile
@@ -184,7 +188,7 @@
    ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
+   '(fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
