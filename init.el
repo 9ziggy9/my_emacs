@@ -161,6 +161,7 @@
   :keymaps '(normal visual)
   :prefix "SPC")
 (my-leader-def
+    "p" 'custom/scratch-toggle
     "T" 'fixmee-view-listing
     "t" 'term
     "s" 'swiper
