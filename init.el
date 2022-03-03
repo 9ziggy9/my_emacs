@@ -179,7 +179,7 @@
 		    (interactive)
 		    (let ((current-prefix-arg t))
 			(stuff-avy-goto-char-timer))))
-(define-key evil-visual-state-map (kbd "g") 'comment-region)
+(define-key evil-visual-state-map (kbd "g") 'comment-or-uncomment-region)
 
 ;; TODO: HYDRA BINDINGS
 (use-package hydra)
