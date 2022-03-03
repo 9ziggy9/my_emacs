@@ -179,6 +179,7 @@
     "bb" '(counsel-switch-buffer :which-key "buffer list")
     "bl" '(mode-line-other-buffer :which-key "previous buffer")
     "bk" '(kill-buffer-and-window :which-key "kill/close buffer")
+    "hl" '(view-lossage :which-key "command history")
     "hc" '(describe-command :which-key "describe command")
     "hk" '(describe-key :which-key "describe key")
     "hf" '(describe-function :which-key "describe function")
