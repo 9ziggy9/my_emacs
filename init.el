@@ -151,6 +151,8 @@
 ;; TODOO: MULTI-CURSOR
 (use-package evil-mc)
 (evil-mc-mode 1)
+(use-package evil-multiedit)
+(evil-multiedit-mode 1)
 
 ;; KEYBINDINGS
 ;; general SPC buffer
@@ -176,7 +178,8 @@
     "SPC" '(closure (t) (&rest _)
 		    (interactive)
 		    (let ((current-prefix-arg t))
-			(evil-avy-goto-char-timer))))
+			(stuff-avy-goto-char-timer))))
+(define-key evil-visual-state-map (kbd "g") 'comment-region)
 
 ;; TODO: HYDRA BINDINGS
 (use-package hydra)
@@ -195,7 +198,7 @@
    ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
+   '(evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
