@@ -172,6 +172,7 @@
     "n" '(custom/org-browse :which-key "notes")
     "f"  '(counsel-find-file :which-key "find file")
     "bb" '(counsel-switch-buffer :which-key "buffer list")
+    "bl" '(mode-line-other-buffer :which-key "previous buffer")
     "bk" '(kill-buffer-and-window :which-key "kill/close buffer")
     "hc" '(describe-command :which-key "describe command")
     "hk" '(describe-key :which-key "describe key")
@@ -185,10 +186,10 @@
 (define-key evil-visual-state-map (kbd "g") 'comment-or-uncomment-region)
 
 ;; window movement
-(define-key evil-normal-state-map (kbd "C-<down>") 'windmove-down)
-(define-key evil-normal-state-map (kbd "C-<up>") 'windmove-up)
-(define-key evil-normal-state-map (kbd "C-<left>") 'windmove-left)
-(define-key evil-normal-state-map (kbd "C-<right>") 'windmove-right)
+(define-key evil-normal-state-map (kbd "<down>") 'windmove-down)
+(define-key evil-normal-state-map (kbd "<up>") 'windmove-up)
+(define-key evil-normal-state-map (kbd "<left>") 'windmove-left)
+(define-key evil-normal-state-map (kbd "<right>") 'windmove-right)
 
 ;; HYDRA BINDINGS
 (use-package hydra)
