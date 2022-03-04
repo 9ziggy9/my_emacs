@@ -1,5 +1,3 @@
-(load "./custom.el")
-
 ;; DISABLE STUPID SCROLLBARS AND SUCH
 (setq inhibit-startup-message t)
 (scroll-bar-mode -1) ;; Disable visible scrollbar
@@ -7,6 +5,7 @@
 (set-fringe-mode 10) ;; Give some breathing room
 (menu-bar-mode -1) ;; Disable the menu bar
 
+;;hello world
 ;; CENTRALIZE UGLY BACKUPS
 (setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
 
@@ -162,6 +161,18 @@
 (use-package evil-multiedit)
 (evil-multiedit-mode 1)
 
+;; UTLITIY FUNCTIONS
+(defun utilities/org-browse ()
+  (interactive)
+  (let ((default-directory (file-truename (expand-file-name "~/org/"))))
+    (call-interactively #'counsel-find-file)))
+
+(defun utilities/scratch-toggle ()
+  (interactive)
+  (if (string= "*scratch*" (buffer-name))
+      (previous-buffer)
+    (switch-to-buffer "*scratch*")))
+
 ;; KEYBINDINGS
 ;; general SPC buffer
 (use-package general)
@@ -169,7 +180,7 @@
   :keymaps '(normal visual)
   :prefix "SPC")
 (my-leader-def
-    "p" '(custom/scratch-toggle :which-key "scratchpad")
+    "p" '(scratch-toggle :which-key "scratchpad")
     "T" '(fixmee-view-listing :which-key "todo list")
     "t" '(term :which-key "terminal")
     "s" '(swiper :which-key "search file")
@@ -177,7 +188,7 @@
     "ee" '(eval-buffer :which-key "evaluate buffer")
     "el" '(eval-last-sexp :which-key "evaluate to point")
     ":" '(counsel-M-x :which-key "M-x")
-    "n" '(custom/org-browse :which-key "notes")
+    "n" '(org-browse :which-key "notes")
     "f"  '(counsel-find-file :which-key "find file")
     "bb" '(counsel-switch-buffer :which-key "buffer list")
     "bl" '(mode-line-other-buffer :which-key "previous buffer")
