@@ -6,7 +6,10 @@
 (menu-bar-mode -1) ;; Disable the menu bar
 
 ;; CENTRALIZE UGLY BACKUPS
-(setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
+(setq backup-directory-alist
+	`((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+	`((".*" ,temporary-file-directory t)))
 
 ;; SETTING FONT
 (set-face-attribute 'default nil :font "FiraCode Nerd Font" :height 110)
@@ -151,12 +154,10 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
-(use-package evil-mc
-  :config
-  (evil-mc-mode 1))
-(use-package evil-multiedit
-  :config
-  (evil-multiedit-mode 1))
+(use-package evil-mc)
+(evil-mc-mode 1)
+(use-package evil-multiedit)
+(evil-multiedit-mode 1)
 
 ;; UTLITIY FUNCTIONS
 (defun utilities/org-browse ()
@@ -181,6 +182,7 @@
     "p" '(scratch-toggle :which-key "scratchpad")
     "T" '(fixmee-view-listing :which-key "todo list")
     "t" '(term :which-key "terminal")
+    "S" '(swiper-all :which-key "search all buffers")
     "s" '(swiper :which-key "search file")
     "c" 'compile
     "ee" '(eval-buffer :which-key "evaluate buffer")
