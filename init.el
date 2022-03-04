@@ -5,7 +5,6 @@
 (set-fringe-mode 10) ;; Give some breathing room
 (menu-bar-mode -1) ;; Disable the menu bar
 
-;;hello world
 ;; CENTRALIZE UGLY BACKUPS
 (setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
 
