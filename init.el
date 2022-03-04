@@ -1,4 +1,4 @@
-(load "~/.emacs.d/custom.el")
+(load "./custom.el")
 
 ;; DISABLE STUPID SCROLLBARS AND SUCH
 (setq inhibit-startup-message t)
@@ -11,7 +11,7 @@
 (set-face-attribute 'default nil :font "Iosevka Nerd Font" :height 110)
 
 ;; THEMING
-(load-theme 'green-is-the-new-black t)
+(load-theme 'misterioso t)
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -225,7 +225,6 @@
 (use-package ccls
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
 	 (lambda() (require 'ccls) (lsp))))
-(setq ccls-executable "/usr/bin/ccls")
 
 ;;;;;;;; DO NOT TOUCH ;;;;;;;;
 (custom-set-variables
