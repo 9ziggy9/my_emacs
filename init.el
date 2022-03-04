@@ -7,8 +7,11 @@
 (set-fringe-mode 10) ;; Give some breathing room
 (menu-bar-mode -1) ;; Disable the menu bar
 
+;; CENTRALIZE UGLY BACKUPS
+(setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
+
 ;; SETTING FONT
-(set-face-attribute 'default nil :font "Iosevka Nerd Font" :height 110)
+(set-face-attribute 'default nil :font "FiraCode Nerd Font" :height 110)
 
 ;; THEMING
 (load-theme 'misterioso t)
