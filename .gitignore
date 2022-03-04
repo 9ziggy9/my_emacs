@@ -11,6 +11,12 @@ tramp
 #fixmee
 /var/
 
+#lsp
+.lsp-session-v1
+
+#cache
+/.cache/
+
 # Org-mode
 .org-id-locations
 *_archive
