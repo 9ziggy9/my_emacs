@@ -118,8 +118,9 @@
   (define-key which-key-mode-map (kbd "C-x n") 'which-key-C-h-dispatch))
 
 ;; UNDO TREE
-(use-package undo-tree)
-(global-undo-tree-mode)
+(use-package undo-tree
+  :config
+  (global-undo-tree-mode))
 
 ;; EVIL MODE
 (use-package evil
@@ -150,16 +151,12 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
-;; TOD0 TOOL
-(use-package fixmee)
-(use-package button-lock)
-(global-fixmee-mode 1)
-
-;; TODOOOO: MULTI-CURSOR
-(use-package evil-mc)
-(evil-mc-mode 1)
-(use-package evil-multiedit)
-(evil-multiedit-mode 1)
+(use-package evil-mc
+  :config
+  (evil-mc-mode 1))
+(use-package evil-multiedit
+  :config
+  (evil-multiedit-mode 1))
 
 ;; UTLITIY FUNCTIONS
 (defun utilities/org-browse ()
