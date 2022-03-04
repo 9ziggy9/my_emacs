@@ -177,6 +177,7 @@
   :keymaps '(normal visual)
   :prefix "SPC")
 (my-leader-def
+    "RET" '(make-frame :which-key "open frame")
     "p" '(scratch-toggle :which-key "scratchpad")
     "T" '(fixmee-view-listing :which-key "todo list")
     "t" '(term :which-key "terminal")
