@@ -58,12 +58,6 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;; INSTALL PACKAGES
-;; for command logging, use clm/toggle-command-...
-;; to open buffer which displays what commands are
-;; actually associated with the keybindings you are using!
-(use-package command-log-mode)
-
 ;; SEARCH: find in current file! Bound to C-s
 (use-package swiper)
 
