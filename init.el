@@ -155,7 +155,7 @@
   ([remap describe-key] . helpful-key))
 
 (use-package evil-mc)
-(evil-mc-mode 1)
+(global-evil-mc-mode 1)
 (use-package evil-multiedit)
 (evil-multiedit-mode 1)
 
