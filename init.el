@@ -11,9 +11,6 @@
 ;; SETTING FONT
 (set-face-attribute 'default nil :font "FiraCode Nerd Font" :height 110)
 
-;; THEMING
-(load-theme 'misterioso t)
-
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
@@ -98,12 +95,22 @@
   :config
   (ivy-mode 1))
 
-;; rich mode for ivy (description of commands)
+;; RICH IVY MODE
 (use-package ivy-rich
   :init
   (ivy-rich-mode 1))
 
-;; rainbow parens/brackets
+;; THEMING
+(use-package doom-themes
+  :ensure t
+  :config
+  (setq doom-themes-enable-bold t
+      doom-themes-enable-italic t)
+  (load-theme 'doom-solarized-dark t)
+  (doom-themes-org-config))
+;; (load-theme 'misterioso t)
+
+;; RAINBOW PARENS
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
