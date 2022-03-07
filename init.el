@@ -188,7 +188,7 @@
     "el" '(eval-last-sexp :which-key "evaluate to point")
     ":" '(counsel-M-x :which-key "M-x")
     "n" '(org-browse :which-key "notes")
-    "f"  '(counsel-find-file :which-key "find file")
+    "ff"  '(counsel-find-file :which-key "find file")
     "bb" '(counsel-switch-buffer :which-key "buffer list")
     "bl" '(mode-line-other-buffer :which-key "previous buffer")
     "bk" '(kill-buffer-and-window :which-key "kill/close buffer")
@@ -217,7 +217,7 @@
 						     (evil-mc-undo-all-cursors)
 						     (evil-multiedit-abort)))
 ;; commenting in visual select
-(define-key evil-visual-state-map (kbd "g") 'comment-or-uncomment-region)
+(define-key evil-visual-state-map (kbd "G") 'comment-or-uncomment-region)
 
 ;; HYDRA BINDINGS
 (use-package hydra)
