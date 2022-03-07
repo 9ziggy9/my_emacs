@@ -160,12 +160,12 @@
 (evil-multiedit-mode 1)
 
 ;; UTLITIY FUNCTIONS
-(defun utilities/org-browse ()
+(defun org-browse ()
   (interactive)
   (let ((default-directory (file-truename (expand-file-name "~/org/"))))
     (call-interactively #'counsel-find-file)))
 
-(defun utilities/scratch-toggle ()
+(defun scratch-toggle ()
   (interactive)
   (if (string= "*scratch*" (buffer-name))
       (previous-buffer)
@@ -180,7 +180,6 @@
 (my-leader-def
     "RET" '(make-frame :which-key "open frame")
     "p" '(scratch-toggle :which-key "scratchpad")
-    "T" '(fixmee-view-listing :which-key "todo list")
     "t" '(term :which-key "terminal")
     "S" '(swiper-all :which-key "search all buffers")
     "s" '(swiper :which-key "search file")
@@ -250,7 +249,7 @@
    ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
+   '(manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
