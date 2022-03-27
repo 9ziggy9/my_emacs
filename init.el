@@ -154,6 +154,11 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
+;; FZF -- binding this to SPC f z in the future
+;; more research needed to see how I can make workflow better match
+;; my usage in console.
+(use-package fzf)
+
 (use-package evil-mc)
 (global-evil-mc-mode 1)
 (use-package evil-multiedit)
@@ -178,6 +183,7 @@
   :keymaps '(normal visual)
   :prefix "SPC")
 (my-leader-def
+  ;; fz -- fzf goes here one day
     "RET" '(make-frame :which-key "open frame")
     "p" '(scratch-toggle :which-key "scratchpad")
     "t" '(term :which-key "terminal")
@@ -255,6 +261,17 @@
   :mode "\\.js\\'"
   :config
   (setq-default js2-ignored-warnings '("msg.extra.trailing.comma")))
+;; for react/JSX stuff
+(use-package rjsx-mode)
+
+;; WEB MODE -- html/css/js
+(use-package web-mode
+  :mode ("\\.html\\'")
+  :config
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-engines-alist
+        '(("django" . "focus/.*\\.html\\'")
+          ("ctemplate" . "realtimecrm/.*\\.html\\'"))))
 
 ;;;;;;;; DO NOT TOUCH ;;;;;;;;
 (custom-set-variables
@@ -266,7 +283,7 @@
    ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
+   '(web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
