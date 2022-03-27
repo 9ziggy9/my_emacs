@@ -16,6 +16,9 @@ tramp
 #lsp
 .lsp-session-v1
 
+#dap
+.dap*
+
 #cache
 /.cache/
 
