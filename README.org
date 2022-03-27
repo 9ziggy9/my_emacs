@@ -6,3 +6,8 @@
 mkdir ~/.emacs.d
 git clone https://github.com/9ziggy9/my_emacs ~/.emacs.d
 #+END_SRC
+
+
+** RESOURCES
+   SystemCrafter videos, obviously, some code stolen from Tsoding Daily. Helpful config walkthrough, where I stole web dev stuff:
+   https://jamiecollinson.com/blog/my-emacs-config/

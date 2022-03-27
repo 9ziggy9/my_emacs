@@ -226,6 +226,14 @@
   ("o" text-scale-decrease "out")
   ("i" text-scale-increase "in"))
 
+;; YAS SNIPPETS
+(use-package yasnippet
+    :config
+    (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")
+    (yas-global-mode 1))
+;; Some premare snippets
+(use-package yasnippet-snippets)
+
 ;; LANGUAGE SERVERS
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
@@ -234,10 +242,19 @@
   :config
   (lsp-enable-which-key-integration t))
 
-;; C
+;; C -- THIS IS MORE THAN ENOUGH FOR C!!!!
 (use-package ccls
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
 	 (lambda() (require 'ccls) (lsp))))
+
+;; JAVASCRIPT
+;; better indent level
+(setq-default js-indent-level 2)
+;; Improved javascript mode; better for ES6
+(use-package js2-mode
+  :mode "\\.js\\'"
+  :config
+  (setq-default js2-ignored-warnings '("msg.extra.trailing.comma")))
 
 ;;;;;;;; DO NOT TOUCH ;;;;;;;;
 (custom-set-variables
@@ -249,7 +266,7 @@
    ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
+   '(js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
