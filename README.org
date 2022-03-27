@@ -11,3 +11,4 @@ git clone https://github.com/9ziggy9/my_emacs ~/.emacs.d
 ** RESOURCES
    SystemCrafter videos, obviously, some code stolen from Tsoding Daily. Helpful config walkthrough, where I stole web dev stuff:
    https://jamiecollinson.com/blog/my-emacs-config/
+   https://github.com/daviwil/emacs-from-scratch
