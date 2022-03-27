@@ -199,6 +199,7 @@
     "bl" '(mode-line-other-buffer :which-key "previous buffer")
     "bk" '(kill-buffer-and-window :which-key "kill/close buffer")
     "hl" '(view-lossage :which-key "command history")
+    "hb" '(describe-bindings :which-key "describe all bindings")
     "hc" '(describe-command :which-key "describe command")
     "hk" '(describe-key :which-key "describe key")
     "hf" '(describe-function :which-key "describe function")
@@ -272,6 +273,13 @@
   (setq web-mode-engines-alist
         '(("django" . "focus/.*\\.html\\'")
           ("ctemplate" . "realtimecrm/.*\\.html\\'"))))
+;;beautify stuff, make sure beautify is installed with npm install -g js-beautify
+;;probably won't use this, but it's here since bindings aren't taken
+(use-package web-beautify
+  :bind (:map web-mode-map
+         ("C-c b" . web-beautify-html)
+         :map js2-mode-map
+         ("C-c b" . web-beautify-js)))
 
 ;;;;;;;; DO NOT TOUCH ;;;;;;;;
 (custom-set-variables
@@ -283,7 +291,7 @@
    ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
+   '(web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
