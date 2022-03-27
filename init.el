@@ -24,8 +24,8 @@
 	     '("*Help*" display-buffer-same-window))
 
 ;; PRETTIFY SYMBOLS
-(global-prettify-symbols-mode +1)
-(setq prettify-symbols-alist '(("lambda" . ?λ)))
+;; (global-prettify-symbols-mode +1)
+;; (setq prettify-symbols-alist '(("lambda" . ?λ)))
 
 ;; AUTOPAIRS
 (electric-pair-mode t)
