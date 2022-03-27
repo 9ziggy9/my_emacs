@@ -183,7 +183,6 @@
   :keymaps '(normal visual)
   :prefix "SPC")
 (my-leader-def
-  ;; fz -- fzf goes here one day
     "RET" '(make-frame :which-key "open frame")
     "p" '(scratch-toggle :which-key "scratchpad")
     "t" '(term :which-key "terminal")
@@ -194,6 +193,7 @@
     "el" '(eval-last-sexp :which-key "evaluate to point")
     ":" '(counsel-M-x :which-key "M-x")
     "n" '(org-browse :which-key "notes")
+    "fz" '(fzf :which-key "fuzzy find files")
     "ff"  '(counsel-find-file :which-key "find file")
     "bb" '(counsel-switch-buffer :which-key "buffer list")
     "bl" '(mode-line-other-buffer :which-key "previous buffer")
