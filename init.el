@@ -25,12 +25,7 @@
 
 ;; PRETTIFY SYMBOLS
 (global-prettify-symbols-mode +1)
-(setq prettify-symbols-alist '(("lambda" . ?λ)
-				("->" . ?→)
-				("=>" . ?⇒)
-				("/=" . ?≠)
-				("<=" . ?≤)
-				(">=" . ?≥)))
+(setq prettify-symbols-alist '(("lambda" . ?λ)))
 
 ;; AUTOPAIRS
 (electric-pair-mode t)
