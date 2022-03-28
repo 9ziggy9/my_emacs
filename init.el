@@ -12,7 +12,7 @@
 	`((".*" ,temporary-file-directory t)))
 
 ;; SETTING FONT
-(set-face-attribute 'default nil :font "FiraCode Nerd Font" :height 110)
+(set-face-attribute 'default nil :font "FiraCode Nerd Font" :height 130)
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -337,6 +337,13 @@
          (before-save . lsp-format-buffer)
          (before-save . lsp-organize-imports)))
 (provide 'gopls-config)
+
+(add-hook 'go-mode-hook
+    (lambda ()
+      (setq-default)
+      (setq tab-width 2)
+      (setq standard-indent 2)
+      (setq indent-tabs-mode nil)))
 
 ;; AUTOCOMPLETION SYSTEM
 (use-package company
