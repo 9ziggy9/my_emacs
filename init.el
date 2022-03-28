@@ -223,7 +223,7 @@
 						     (evil-mc-undo-all-cursors)
 						     (evil-multiedit-abort)))
 ;; commenting in visual select
-(define-key evil-visual-state-map (kbd "G") 'comment-or-uncomment-region)
+(define-key evil-visual-state-map (kbd "C") 'comment-or-uncomment-region)
 
 ;; HYDRA BINDINGS
 (use-package hydra)
