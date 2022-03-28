@@ -10,6 +10,10 @@
 	`((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
 	`((".*" ,temporary-file-directory t)))
+(setq auto-save-file-name-transforms
+	`((".*" ,temporary-file-directory t)))
+(setq undo-tree-history-directory-alist
+      `(("." . "~/.emacs.d/.undo-tree-history")))
 
 ;; SETTING FONT
 (set-face-attribute 'default nil :font "FiraCode Nerd Font" :height 130)
