@@ -21,6 +21,7 @@ tramp
 
 #cache
 /.cache/
+network-security.data
 
 # Org-mode
 .org-id-locations
@@ -57,3 +58,6 @@ flycheck_*.el
 
 # directory configuration
 .dir-locals.el
+
+# undo-tree shit
+/.undo-tree-history/
