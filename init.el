@@ -336,6 +336,7 @@
   :hook ((go-mode . lsp-deferred)
          (before-save . lsp-format-buffer)
          (before-save . lsp-organize-imports)))
+(provide 'gopls-config)
 
 ;; AUTOCOMPLETION SYSTEM
 (use-package company
