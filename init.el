@@ -213,6 +213,9 @@
 (define-key evil-normal-state-map (kbd "<up>") 'windmove-up)
 (define-key evil-normal-state-map (kbd "<left>") 'windmove-left)
 (define-key evil-normal-state-map (kbd "<right>") 'windmove-right)
+(define-key evil-normal-state-map (kbd "C") 'comment-line)
+(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-page-up)
+(define-key evil-normal-state-map (kbd "C-d") 'evil-scroll-page-down)
 
 ;; multi cursor
 (define-key evil-normal-state-map (kbd "C-j") 'evil-mc-make-cursor-move-next-line)
