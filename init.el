@@ -110,6 +110,9 @@
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
+;; Get expand selection in delimiters fast
+(use-package expand-region)
+
 ;; SELF-DISCOVERABILITY FEATURE, shows commands that follow
 ;; currently invoked binding
 (use-package which-key
@@ -216,6 +219,8 @@
 (define-key evil-normal-state-map (kbd "C") 'comment-line)
 (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-page-up)
 (define-key evil-normal-state-map (kbd "C-d") 'evil-scroll-page-down)
+(define-key evil-normal-state-map (kbd "D") 'er/expand-region)
+(define-key evil-normal-state-map (kbd "S") 'er/contract-region)
 
 ;; multi cursor
 (define-key evil-normal-state-map (kbd "C-j") 'evil-mc-make-cursor-move-next-line)
@@ -374,7 +379,7 @@
    ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(go-mode company typescript-mode dap-mode hindent haskell-mode web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
+   '(expand-region go-mode company typescript-mode dap-mode hindent haskell-mode web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
