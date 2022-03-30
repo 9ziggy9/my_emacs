@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: hello 
+# key: hello
+# --
+
+HELLO, WORLD!
