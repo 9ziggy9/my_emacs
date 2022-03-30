@@ -26,8 +26,6 @@ network-security.data
 # Org-mode
 .org-id-locations
 *_archive
-org-roam.db
-bookmarks
 
 # flymake-mode
 *_flymake.*
