@@ -20,6 +20,8 @@
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+(global-set-key (kbd "C-=") 'text-scale-increase)
+(global-set-key (kbd "C-\-") 'text-scale-decrease)
 
 ;; AUTOFOCUS/MAXIMIZE HELP WINDOWS
 (add-to-list 'display-buffer-alist
@@ -166,11 +168,14 @@
 (use-package evil-multiedit)
 (evil-multiedit-mode 1)
 
+;; ORG MODE
+
+
 ;; UTLITIY FUNCTIONS
-(defun org-browse ()
-  (interactive)
-  (let ((default-directory (file-truename (expand-file-name "~/org/"))))
-    (call-interactively #'counsel-find-file)))
+;; (defun org-browse ()
+;;   (interactive)
+;;   (let ((default-directory (file-truename (expand-file-name "~/org/"))))
+;;     (call-interactively #'counsel-find-file)))
 
 (defun scratch-toggle ()
   (interactive)
@@ -234,11 +239,11 @@
 (define-key evil-visual-state-map (kbd "C") 'comment-or-uncomment-region)
 
 ;; HYDRA BINDINGS
-(use-package hydra)
-(defhydra hydra-zoom (global-map "C-+")
-  "zoom"
-  ("o" text-scale-decrease "out")
-  ("i" text-scale-increase "in"))
+;; (use-package hydra)
+;; (defhydra hydra-zoom (global-map "C-+")
+;;   "zoom"
+;;   ("o" text-scale-decrease "out")
+;;   ("i" text-scale-increase "in"))
 
 ;; YAS SNIPPETS
 (use-package yasnippet
