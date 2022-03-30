@@ -183,6 +183,14 @@
   :hook (org-mode . org-bullets-mode)
   :custom
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+(use-package org-roam
+  :ensure t
+  :init
+  (setq org-roam-v2-ack t)
+  :custom
+  (org-roam-directory "~/org")
+  :config
+  (org-roam-setup))
 
 ;; UTLITIY FUNCTIONS
 ;; (defun org-browse ()
@@ -212,7 +220,6 @@
     "ee" '(eval-buffer :which-key "evaluate buffer")
     "el" '(eval-last-sexp :which-key "evaluate to point")
     ":" '(counsel-M-x :which-key "M-x")
-    "n" '(org-browse :which-key "notes")
     "fz" '(fzf :which-key "fuzzy find files")
     "ff"  '(counsel-find-file :which-key "find file")
     "bb" '(counsel-switch-buffer :which-key "buffer list")
@@ -224,6 +231,8 @@
     "hk" '(describe-key :which-key "describe key")
     "hf" '(describe-function :which-key "describe function")
     "hv" '(describe-variable :which-key "describe variable")
+    "nf" '(org-roam-node-find :which-key "find/create a note (roam node)")
+    "ni" '(org-roam-node-insert :which-key "insert reference to roam node")
     "SPC" '(closure (t) (&rest _)
 		    (interactive)
 		    (let ((current-prefix-arg t))
@@ -397,7 +406,7 @@
    ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(org-bullets expand-region go-mode company typescript-mode dap-mode hindent haskell-mode web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
+   '(org-roam org-bullets expand-region go-mode company typescript-mode dap-mode hindent haskell-mode web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
