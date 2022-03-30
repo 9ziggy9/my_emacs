@@ -3,8 +3,8 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-capture-last-stored"
- (filename . "~/org/20220329195308-testing.org")
+ (filename . "~/org/20220329200605-golang.org")
  (front-context-string)
- (rear-context-string . "+title: Testing\n")
- (position . 85))
+ (rear-context-string . "#+title: Golang\n")
+ (position . 84))
 )
