@@ -172,7 +172,6 @@
 ;; ORG MODE
 (defun zig/org-mode-setup ()
   (org-indent-mode)
-  (org-src-preserve-indentation t)
   (variable-pitch-mode 1)
   (auto-fill-mode 0)
   (visual-line-mode 1)

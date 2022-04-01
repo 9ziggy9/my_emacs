@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: source
+# key: source
+# --
+
+#+begin_src shell
+$1
+#+end_src 
