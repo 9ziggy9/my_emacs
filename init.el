@@ -134,6 +134,7 @@
   :bind (("<escape>" . keyboard-escape-quit))
   :init
   (setq evil-want-keybinding nil)
+  (setq evil-shift-width 2)
   :config
   (evil-set-undo-system 'undo-tree)
   (evil-mode 1))
