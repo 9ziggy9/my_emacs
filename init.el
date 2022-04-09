@@ -22,6 +22,7 @@
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "C-=") 'text-scale-increase)
 (global-set-key (kbd "C-\-") 'text-scale-decrease)
+(global-set-key (kbd "C-<return>") 'make-frame)
 
 ;; AUTOFOCUS/MAXIMIZE HELP WINDOWS
 (add-to-list 'display-buffer-alist
@@ -214,7 +215,7 @@
   :keymaps '(normal visual)
   :prefix "SPC")
 (my-leader-def
-    "RET" '(make-frame :which-key "open frame")
+    "RET" '(recenter-top-bottom :which-key "recenter on current line")
     "p" '(scratch-toggle :which-key "scratchpad")
     "t" '(term :which-key "terminal")
     "S" '(swiper-all :which-key "search all buffers")
