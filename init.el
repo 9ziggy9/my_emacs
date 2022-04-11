@@ -225,7 +225,6 @@
     "c" 'compile
     "C" '((lambda () (interactive) (find-file "~/.emacs.d/init.el")) 
 	  :which-key "config file")
-    "E" '(flymake-show-buffer-diagnostics :which-key "show error diagnostics")
     "ee" '(eval-buffer :which-key "evaluate buffer")
     "el" '(eval-last-sexp :which-key "evaluate to point")
     ":" '(counsel-M-x :which-key "M-x")
@@ -259,6 +258,7 @@
 (define-key evil-normal-state-map (kbd "S") 'er/contract-region)
 (define-key evil-normal-state-map (kbd "K") 'evil-join)
 (define-key evil-normal-state-map (kbd "M") 'woman)
+(define-key evil-normal-state-map (kbd "E") 'flymake-show-buffer-diagnostics)
 (define-key evil-normal-state-map (kbd "f") 'evil-snipe-f)
 
 ;; multi cursor
