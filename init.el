@@ -217,6 +217,7 @@
 (my-leader-def
     "RET" '(recenter-top-bottom :which-key "recenter on current line")
     "p" '(scratch-toggle :which-key "scratchpad")
+    "P" '(projectile-command-map :which-key "projectile")
     "t" '(term :which-key "terminal")
     "S" '(swiper-all :which-key "search all buffers")
     "s" '(swiper :which-key "search file")
@@ -401,6 +402,14 @@
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0))
 
+(use-package projectile
+  :diminish projectile-mode
+  :config (projectile-mode)
+  :init
+  (when (file-directory-p "~/source")
+    (setq projectile-project-search-path '("~/source")))
+  (setq projectile-switch-project-action #'projectile-dired))
+
 ;;;;;;;; DO NOT TOUCH ;;;;;;;;
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -411,7 +420,7 @@
    ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(evil-snipe org-roam org-bullets expand-region go-mode company typescript-mode dap-mode hindent haskell-mode web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
+   '(projectile evil-snipe org-roam org-bullets expand-region go-mode company typescript-mode dap-mode hindent haskell-mode web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
