@@ -282,6 +282,8 @@
 (use-package yasnippet-snippets)
 
 ;; LANGUAGE SERVERS
+;; NOTE TO SELF: remember, if project is accidentally blacklisted
+;; simply run M-x lsp-workspace-blacklist-remove
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :init
