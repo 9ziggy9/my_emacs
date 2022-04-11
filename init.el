@@ -216,12 +216,16 @@
   :prefix "SPC")
 (my-leader-def
     "RET" '(recenter-top-bottom :which-key "recenter on current line")
-    "p" '(scratch-toggle :which-key "scratchpad")
-    "P" '(projectile-command-map :which-key "projectile")
+    "N" '(scratch-toggle :which-key "scratchpad")
+    "p" '(counsel-projectile-find-file :which-key "find projectile project")
+    "g" '(counsel-projectile-grep :which-key "grep projectile project")
     "t" '(term :which-key "terminal")
     "S" '(swiper-all :which-key "search all buffers")
     "s" '(swiper :which-key "search file")
     "c" 'compile
+    "C" '((lambda () (interactive) (find-file "~/.emacs.d/init.el")) 
+	  :which-key "config file")
+    "E" '(flymake-show-buffer-diagnostics :which-key "show error diagnostics")
     "ee" '(eval-buffer :which-key "evaluate buffer")
     "el" '(eval-last-sexp :which-key "evaluate to point")
     ":" '(counsel-M-x :which-key "M-x")
@@ -253,6 +257,8 @@
 (define-key evil-normal-state-map (kbd "C-d") 'evil-scroll-page-down)
 (define-key evil-normal-state-map (kbd "D") 'er/expand-region)
 (define-key evil-normal-state-map (kbd "S") 'er/contract-region)
+(define-key evil-normal-state-map (kbd "K") 'evil-join)
+(define-key evil-normal-state-map (kbd "M") 'woman)
 (define-key evil-normal-state-map (kbd "f") 'evil-snipe-f)
 
 ;; multi cursor
@@ -295,6 +301,9 @@
 (use-package ccls
   :hook ((c-mode c++-mode objc-mode cuda-mode) .
 	 (lambda() (require 'ccls) (lsp))))
+
+(add-hook 'lsp-mode-hook (lambda ()
+			 (remove-hook 'before-save-hook #'lsp-format-buffer)))
 
 ;; JAVASCRIPT
 ;; better indent level
@@ -411,6 +420,7 @@
   (when (file-directory-p "~/source")
     (setq projectile-project-search-path '("~/source")))
   (setq projectile-switch-project-action #'projectile-dired))
+(use-package counsel-projectile)
 
 ;;;;;;;; DO NOT TOUCH ;;;;;;;;
 (custom-set-variables
@@ -422,7 +432,7 @@
    ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(projectile evil-snipe org-roam org-bullets expand-region go-mode company typescript-mode dap-mode hindent haskell-mode web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
+   '(counsel-projectile projectile evil-snipe org-roam org-bullets expand-region go-mode company typescript-mode dap-mode hindent haskell-mode web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
