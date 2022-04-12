@@ -8,9 +8,15 @@ git clone https://github.com/9ziggy9/my_emacs ~/.emacs.d
 #+END_SRC
 
 ** NOTES
-*** I use Nerd Fonts, visit their repo for installation directions, or simply change font choice in init.el.
-*** In order to use LSP mode with React/JSX projects, be sure to npm install eslint in the project root directory.
-*** In case a project is ever blacklisted, you will want to run the following
+**** I use Nerd Fonts, visit their repo for installation directions, or simply change font choice in init.el.
+**** In order to use LSP mode with React/JSX projects, you need to install and init eslint in $HOME directory
+#+BEGIN_SRC
+cd ~
+npm init
+npm install -g eslint babel-eslint eslint-plugin-react
+eslint --init
+#+END_SRC
+**** In case a project is ever blacklisted, you will want to run the following
 #+BEGIN_SRC
 M-x lsp-workspace-blacklist-remove
 #+END_SRC
