@@ -417,8 +417,8 @@
   :diminish projectile-mode
   :config (projectile-mode)
   :init
-  (when (file-directory-p "~/source")
-    (setq projectile-project-search-path '("~/source")))
+;;  (when (file-directory-p "~/")
+  (setq projectile-project-search-path '("~/source"))
   (setq projectile-switch-project-action #'projectile-dired))
 (use-package counsel-projectile)
 
