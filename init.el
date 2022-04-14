@@ -30,6 +30,7 @@
 (add-to-list 'display-buffer-alist
 	     '("*Help*" display-buffer-same-window))
 
+
 ;; PRETTIFY SYMBOLS
 ;; (global-prettify-symbols-mode +1)
 ;; (setq prettify-symbols-alist '(("lambda" . ?λ)))
@@ -135,6 +136,7 @@
   :init
   (setq evil-want-keybinding nil)
   (setq evil-shift-width 2)
+  (setq evil-jump-cross-buffers t)
   :config
   (evil-set-undo-system 'undo-tree)
   (evil-mode 1))
@@ -255,10 +257,13 @@
 (define-key evil-normal-state-map (kbd "C-d") 'evil-scroll-page-down)
 (define-key evil-normal-state-map (kbd "D") 'er/expand-region)
 (define-key evil-normal-state-map (kbd "S") 'er/contract-region)
-(define-key evil-normal-state-map (kbd "K") 'evil-join)
+(define-key evil-normal-state-map (kbd "-") 'evil-join)
 (define-key evil-normal-state-map (kbd "M") 'woman)
 (define-key evil-normal-state-map (kbd "E") 'flymake-show-buffer-diagnostics)
 (define-key evil-normal-state-map (kbd "f") 'evil-snipe-f)
+(define-key evil-normal-state-map (kbd "K") 'evil-previous-line-first-non-blank)
+(define-key evil-normal-state-map (kbd "J") 'evil-next-line-first-non-blank)
+
 
 ;; multi cursor
 (define-key evil-normal-state-map (kbd "C-j") 'evil-mc-make-cursor-move-next-line)
@@ -402,6 +407,11 @@
 
 ;; AUTOCOMPLETION SYSTEM
 (use-package company
+  :ensure t
+  :defer t
+  :init 
+  (global-company-mode)
+  (setq company-idle-delay 0.25)
   :after lsp-mode
   :hook (lsp-mode . company-mode)
   :bind (:map company-active-map
