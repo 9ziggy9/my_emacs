@@ -16,7 +16,7 @@
       `(("." . "~/.emacs.d/.undo-tree-history")))
 
 ;; SETTING FONT
-(set-face-attribute 'default nil :font "FiraCode Nerd Font" :height 130)
+(set-face-attribute 'default nil :font "Iosevka Nerd Font Mono-18:normal")
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -106,7 +106,6 @@
   (setq doom-themes-enable-bold t
       doom-themes-enable-italic t)
   (load-theme 'doom-nord t))
-;; (load-theme 'misterioso t)
 
 ;; RAINBOW PARENS
 (use-package rainbow-delimiters
