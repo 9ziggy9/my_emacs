@@ -261,6 +261,7 @@
 (define-key evil-normal-state-map (kbd "M") 'woman)
 (define-key evil-normal-state-map (kbd "E") 'flymake-show-buffer-diagnostics)
 (define-key evil-normal-state-map (kbd "f") 'evil-snipe-f)
+(define-key evil-normal-state-map (kbd "F") 'evil-snipe-F)
 (define-key evil-normal-state-map (kbd "K") 'evil-previous-line-first-non-blank)
 (define-key evil-normal-state-map (kbd "J") 'evil-next-line-first-non-blank)
 
