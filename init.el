@@ -5,6 +5,10 @@
 (set-fringe-mode 10) ;; Give some breathing room
 (menu-bar-mode -1) ;; Disable the menu bar
 
+;; opacity
+(set-frame-parameter (selected-frame) 'alpha '(91 . 92))
+(add-to-list 'default-frame-alist '(alpha . (91 . 92)))
+
 ;; CENTRALIZE UGLY BACKUPS
 (setq backup-directory-alist
 	`((".*" . ,temporary-file-directory)))
