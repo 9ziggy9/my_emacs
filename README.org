@@ -16,6 +16,11 @@ npm init
 npm install -g eslint babel-eslint eslint-plugin-react
 eslint --init
 #+END_SRC
+EDIT: eslint config continues to be an annoying uphill battle. I think I need to configure flycheck or lsp-mode to default to root eslint file. For now, one can get a project up and running by simply running
+#+BEGIN_SRC
+eslint --init
+#+END_SRC
+in a project directory. I suppose this makes sense, as we will likely want different configuration settings depending on project.
 **** In case a project is ever blacklisted, you will want to run the following
 #+BEGIN_SRC
 M-x lsp-workspace-blacklist-remove
