@@ -9,6 +9,8 @@ tramp
 .\#*
 
 /backups/
+transient/
+bookmarks*
 
 #fixmee
 /var/
@@ -54,7 +56,7 @@ flycheck_*.el
 /server/
 
 # projectiles files
-.projectile
+.projectile*
 
 # directory configuration
 .dir-locals.el
