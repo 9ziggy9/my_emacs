@@ -141,6 +141,7 @@
   (setq evil-want-keybinding nil)
   (setq evil-shift-width 2)
   (setq evil-jump-cross-buffers t)
+  ;; comeback and set avy-window-all
   :config
   (evil-set-undo-system 'undo-tree)
   (evil-mode 1))
@@ -200,93 +201,6 @@
   (org-roam-directory "~/org")
   :config
   (org-roam-setup))
-
-;; UTLITIY FUNCTIONS
-;; (defun org-browse ()
-;;   (interactive)
-;;   (let ((default-directory (file-truename (expand-file-name "~/org/"))))
-;;     (call-interactively #'counsel-find-file)))
-
-(defun scratch-toggle ()
-  (interactive)
-  (if (string= "*scratch*" (buffer-name))
-      (previous-buffer)
-    (switch-to-buffer "*scratch*")))
-
-;; KEYBINDINGS
-;; general SPC buffer
-(use-package general)
-(general-create-definer my-leader-def
-  :keymaps '(normal visual)
-  :prefix "SPC")
-(my-leader-def
-    "RET" '(recenter-top-bottom :which-key "recenter on current line")
-    "N" '(scratch-toggle :which-key "scratchpad")
-    "p" '(counsel-projectile-find-file :which-key "find projectile project")
-    "g" '(counsel-projectile-grep :which-key "grep projectile project")
-    "t" '(term :which-key "terminal")
-    "S" '(swiper-all :which-key "search all buffers")
-    "s" '(swiper :which-key "search file")
-    "c" 'compile
-    "C" '((lambda () (interactive) (find-file "~/.emacs.d/init.el")) 
-	  :which-key "config file")
-    "ee" '(eval-buffer :which-key "evaluate buffer")
-    "el" '(eval-last-sexp :which-key "evaluate to point")
-    ":" '(counsel-M-x :which-key "M-x")
-    "z" '(fzf :which-key "fuzzy find files")
-    "f"  '(counsel-find-file :which-key "find file")
-    "bb" '(counsel-switch-buffer :which-key "buffer list")
-    "bl" '(mode-line-other-buffer :which-key "previous buffer")
-    "bk" '(kill-buffer-and-window :which-key "kill/close buffer")
-    "hl" '(view-lossage :which-key "command history")
-    "hb" '(describe-bindings :which-key "describe all bindings")
-    "hc" '(describe-command :which-key "describe command")
-    "hk" '(describe-key :which-key "describe key")
-    "hf" '(describe-function :which-key "describe function")
-    "hv" '(describe-variable :which-key "describe variable")
-    "nf" '(org-roam-node-find :which-key "find/create a note (roam node)")
-    "ni" '(org-roam-node-insert :which-key "insert reference to roam node")
-    "SPC" '(closure (t) (&rest _)
-		    (interactive)
-		    (let ((current-prefix-arg t))
-			(evil-avy-goto-char-timer))))
-
-;; window movement
-(define-key evil-normal-state-map (kbd "<down>") 'windmove-down)
-(define-key evil-normal-state-map (kbd "<up>") 'windmove-up)
-(define-key evil-normal-state-map (kbd "<left>") 'windmove-left)
-(define-key evil-normal-state-map (kbd "<right>") 'windmove-right)
-(define-key evil-normal-state-map (kbd "C") 'comment-line)
-(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-page-up)
-(define-key evil-normal-state-map (kbd "C-d") 'evil-scroll-page-down)
-(define-key evil-normal-state-map (kbd "D") 'er/expand-region)
-(define-key evil-normal-state-map (kbd "S") 'er/contract-region)
-(define-key evil-normal-state-map (kbd "-") 'evil-join)
-(define-key evil-normal-state-map (kbd "M") 'woman)
-(define-key evil-normal-state-map (kbd "E") 'flymake-show-buffer-diagnostics)
-(define-key evil-normal-state-map (kbd "f") 'evil-snipe-f)
-(define-key evil-normal-state-map (kbd "F") 'evil-snipe-F)
-(define-key evil-normal-state-map (kbd "K") 'evil-previous-line-first-non-blank)
-(define-key evil-normal-state-map (kbd "J") 'evil-next-line-first-non-blank)
-
-
-;; multi cursor
-(define-key evil-normal-state-map (kbd "C-j") 'evil-mc-make-cursor-move-next-line)
-(define-key evil-normal-state-map (kbd "C-k") 'evil-mc-undo-last-added-cursor)
-(define-key evil-normal-state-map (kbd "C-l") 'evil-multiedit-match-and-next)
-(define-key evil-normal-state-map (kbd "C-h") 'evil-multiedit-abort)
-(define-key evil-normal-state-map (kbd "<escape>") '(lambda () (interactive)
-						     (evil-mc-undo-all-cursors)
-						     (evil-multiedit-abort)))
-;; commenting in visual select
-(define-key evil-visual-state-map (kbd "C") 'comment-or-uncomment-region)
-
-;; HYDRA BINDINGS
-;; (use-package hydra)
-;; (defhydra hydra-zoom (global-map "C-+")
-;;   "zoom"
-;;   ("o" text-scale-decrease "out")
-;;   ("i" text-scale-increase "in"))
 
 ;; YAS SNIPPETS
 (use-package yasnippet
@@ -431,10 +345,90 @@
   :diminish projectile-mode
   :config (projectile-mode)
   :init
-;;  (when (file-directory-p "~/")
   (setq projectile-project-search-path '("~/source"))
   (setq projectile-switch-project-action #'projectile-dired))
 (use-package counsel-projectile)
+
+(defun scratch-toggle ()
+  (interactive)
+  (if (string= "*scratch*" (buffer-name))
+      (previous-buffer)
+    (switch-to-buffer "*scratch*")))
+
+;; KEYBINDINGS
+;; general SPC buffer
+(use-package general)
+(general-create-definer my-leader-def
+  :keymaps '(normal visual)
+  :prefix "SPC")
+(my-leader-def
+    "RET" '(recenter-top-bottom :which-key "recenter on current line")
+    "N" '(scratch-toggle :which-key "scratchpad")
+    "p" '(counsel-projectile-find-file :which-key "find projectile project")
+    "g" '(counsel-projectile-grep :which-key "grep projectile project")
+    "t" '(term :which-key "terminal")
+    "S" '(swiper-all :which-key "search all buffers")
+    "s" '(swiper :which-key "search file")
+    "c" 'compile
+    "C" '((lambda () (interactive) (find-file "~/.emacs.d/init.el")) 
+	  :which-key "config file")
+    "ee" '(eval-buffer :which-key "evaluate buffer")
+    "el" '(eval-last-sexp :which-key "evaluate to point")
+    ":" '(counsel-M-x :which-key "M-x")
+    "z" '(fzf :which-key "fuzzy find files")
+    "f"  '(counsel-find-file :which-key "find file")
+    "bb" '(counsel-switch-buffer :which-key "buffer list")
+    "bl" '(mode-line-other-buffer :which-key "previous buffer")
+    "bk" '(kill-buffer-and-window :which-key "kill/close buffer")
+    "hl" '(view-lossage :which-key "command history")
+    "hb" '(describe-bindings :which-key "describe all bindings")
+    "hc" '(describe-command :which-key "describe command")
+    "hk" '(describe-key :which-key "describe key")
+    "hf" '(describe-function :which-key "describe function")
+    "hv" '(describe-variable :which-key "describe variable")
+    "nf" '(org-roam-node-find :which-key "find/create a note (roam node)")
+    "ni" '(org-roam-node-insert :which-key "insert reference to roam node")
+    "SPC" '(closure (t) (&rest _)
+		    (interactive)
+		    (let ((current-prefix-arg t))
+			(evil-avy-goto-char-timer t))))
+
+;; window movement
+(define-key evil-normal-state-map (kbd "<down>") 'windmove-down)
+(define-key evil-normal-state-map (kbd "<up>") 'windmove-up)
+(define-key evil-normal-state-map (kbd "<left>") 'windmove-left)
+(define-key evil-normal-state-map (kbd "<right>") 'windmove-right)
+(define-key evil-normal-state-map (kbd "C") 'comment-line)
+(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-page-up)
+(define-key evil-normal-state-map (kbd "C-d") 'evil-scroll-page-down)
+(define-key evil-normal-state-map (kbd "D") 'er/expand-region)
+(define-key evil-normal-state-map (kbd "S") 'er/contract-region)
+(define-key evil-normal-state-map (kbd "-") 'evil-join)
+(define-key evil-normal-state-map (kbd "M") 'woman)
+(define-key evil-normal-state-map (kbd "E") 'flymake-show-buffer-diagnostics)
+(define-key evil-normal-state-map (kbd "f") 'evil-snipe-f)
+(define-key evil-normal-state-map (kbd "F") 'evil-snipe-F)
+(define-key evil-normal-state-map (kbd "K") 'evil-previous-line-first-non-blank)
+(define-key evil-normal-state-map (kbd "J") 'evil-next-line-first-non-blank)
+
+
+;; multi cursor
+(define-key evil-normal-state-map (kbd "C-j") 'evil-mc-make-cursor-move-next-line)
+(define-key evil-normal-state-map (kbd "C-k") 'evil-mc-undo-last-added-cursor)
+(define-key evil-normal-state-map (kbd "C-l") 'evil-multiedit-match-and-next)
+(define-key evil-normal-state-map (kbd "C-h") 'evil-multiedit-abort)
+(define-key evil-normal-state-map (kbd "<escape>") #'(lambda () (interactive)
+						     (evil-mc-undo-all-cursors)
+						     (evil-multiedit-abort)))
+;; commenting in visual select
+(define-key evil-visual-state-map (kbd "C") 'comment-or-uncomment-region)
+
+;; HYDRA BINDINGS
+;; (use-package hydra)
+;; (defhydra hydra-zoom (global-map "C-+")
+;;   "zoom"
+;;   ("o" text-scale-decrease "out")
+;;   ("i" text-scale-increase "in"))
 
 ;;;;;;;; DO NOT TOUCH ;;;;;;;;
 (custom-set-variables
@@ -446,7 +440,7 @@
    ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(company-math counsel-projectile projectile evil-snipe org-roam org-bullets expand-region go-mode company typescript-mode dap-mode hindent haskell-mode web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
+   '(origami-mode yafolding company-math counsel-projectile projectile evil-snipe org-roam org-bullets expand-region go-mode company typescript-mode dap-mode hindent haskell-mode web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
