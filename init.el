@@ -19,6 +19,9 @@
 (setq undo-tree-history-directory-alist
       `(("." . "~/.emacs.d/.undo-tree-history")))
 
+;; set to system clipboard
+(setq x-select-enable-clipboard t)
+
 ;; SETTING FONT
 (set-face-attribute 'default nil :font "Iosevka Nerd Font Mono-16:normal")
 
