@@ -6,8 +6,8 @@
 (menu-bar-mode -1) ;; Disable the menu bar
 
 ;; opacity
-(set-frame-parameter (selected-frame) 'alpha '(91 . 92))
-(add-to-list 'default-frame-alist '(alpha . (91 . 92)))
+(set-frame-parameter (selected-frame) 'alpha '(82 . 83))
+(add-to-list 'default-frame-alist '(alpha . (82 . 83)))
 
 ;; CENTRALIZE UGLY BACKUPS
 (setq backup-directory-alist
