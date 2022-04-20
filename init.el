@@ -163,7 +163,7 @@
   :after evil
   :config
   (setq evil-want-integration t)
-  (setq avy-all-windows nil)
+  (setq avy-all-windows 'all-frames)
   (setq avy-all-windows-alt t)
   (setq avy-background t)
   (evil-collection-init))
@@ -412,18 +412,7 @@
 	      (interactive)
 	      (let ((current-prefix-arg nil))
 		(evil-avy-goto-char-timer)))
-			      :which-key "FIX ME"))
-    ;; "SPC" '(let ((current-prefix-arg t)) (evil-avy-goto-char-timer)))
-    ;;"SPC" '(closure (t) (&rest _)
-		;;   (interactive)
-		;;   (let ((current-prefix-arg t))
-		;;	(evil-avy-goto-char-timer)))
-    ;; as found in doom-emacs
-    ;; "SPC" (cmd! (let ((current-prefix-arg t)) (evil-avy-goto-char-timer)))
-  ;; (defmacro cmd! (&rest body)
-  ;;   "Returns (lambda () (interactive) ,@body)
-  ;; A factory for quickly producing interaction commands, particularly for keybinds
-  ;; or aliases."
+			      :which-key "timer jump"))
 
 ;; window movement
 (define-key evil-normal-state-map (kbd "<down>") 'windmove-down)
