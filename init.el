@@ -52,7 +52,8 @@
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;; Helpful mode hook for docs
-(dolist (mode '(woman-mode-hook))
+(dolist (mode '(woman-mode-hook
+		help-mode-hook))
   (add-hook mode (lambda () (helpful-mode))))
 
 ;; PACKAGE MANAGEMENT
@@ -372,7 +373,7 @@
     "RET" '(recenter-top-bottom :which-key "recenter on current line")
     "N" '(scratch-toggle :which-key "scratchpad")
     "p" '(counsel-projectile-find-file :which-key "find projectile project")
-    "g" '(counsel-projectile-grep :which-key "grep projectile project")
+    "g" '(counsel-projectile-ag :which-key "grep projectile project")
     "t" '(term :which-key "terminal")
     "S" '(swiper-all :which-key "search all buffers")
     "s" '(swiper :which-key "search file")
