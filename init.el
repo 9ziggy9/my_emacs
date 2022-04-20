@@ -157,13 +157,22 @@
   (evil-set-undo-system 'undo-tree)
   (evil-mode 1))
 
+;;yepperinthepepper
+
 (use-package evil-collection
   :after evil
   :config
   (setq evil-want-integration t)
+  (setq avy-all-windows nil)
+  (setq avy-all-windows-alt t)
+  (setq avy-background t)
   (evil-collection-init))
 
-(use-package evil-easymotion)
+;; (use-package evil-easymotion
+;;   :after evil
+;;   :config
+;;   (setq avy-))
+
 (use-package evil-snipe
   :init (evil-snipe-mode +1))
 
@@ -171,7 +180,7 @@
 (use-package helpful
   :custom
   (counsel-describe-function-function #'helpful-callable)
-  (counsel-describe-variable-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
   :bind
   ([remap describe-function] . counsel-describe-function)
   ([remap describe-command] . helpful-command)
@@ -399,10 +408,22 @@
     "hv" '(describe-variable :which-key "describe variable")
     "nf" '(org-roam-node-find :which-key "find/create a note (roam node)")
     "ni" '(org-roam-node-insert :which-key "insert reference to roam node")
-    "SPC" '(closure (t) (&rest _)
-		    (interactive)
-		    (let ((current-prefix-arg t))
-			(evil-avy-goto-char-timer t))))
+    "SPC" '((lambda () 
+	      (interactive)
+	      (let ((current-prefix-arg nil))
+		(evil-avy-goto-char-timer)))
+			      :which-key "FIX ME"))
+    ;; "SPC" '(let ((current-prefix-arg t)) (evil-avy-goto-char-timer)))
+    ;;"SPC" '(closure (t) (&rest _)
+		;;   (interactive)
+		;;   (let ((current-prefix-arg t))
+		;;	(evil-avy-goto-char-timer)))
+    ;; as found in doom-emacs
+    ;; "SPC" (cmd! (let ((current-prefix-arg t)) (evil-avy-goto-char-timer)))
+  ;; (defmacro cmd! (&rest body)
+  ;;   "Returns (lambda () (interactive) ,@body)
+  ;; A factory for quickly producing interaction commands, particularly for keybinds
+  ;; or aliases."
 
 ;; window movement
 (define-key evil-normal-state-map (kbd "<down>") 'windmove-down)
