@@ -5,6 +5,11 @@
 (set-fringe-mode 10) ;; Give some breathing room
 (menu-bar-mode -1) ;; Disable the menu bar
 
+;; stop the backup files damnit
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+(setq create-lockfiles nil)
+
 ;; opacity
 (set-frame-parameter (selected-frame) 'alpha '(82 . 83))
 (add-to-list 'default-frame-alist '(alpha . (82 . 83)))
