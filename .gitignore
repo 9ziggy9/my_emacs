@@ -8,6 +8,9 @@ auto-save-list
 tramp
 .\#*
 
+#I'm going to sym link to this guy in actuall org dir
+org-roam.db
+
 /backups/
 transient/
 bookmarks*
