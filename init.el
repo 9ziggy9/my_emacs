@@ -51,6 +51,10 @@
 		eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
+;; Helpful mode hook for docs
+(dolist (mode '(woman-mode-hook))
+  (add-hook mode (lambda () (helpful-mode))))
+
 ;; PACKAGE MANAGEMENT
 (require 'package)
 
@@ -118,6 +122,9 @@
 
 ;; Get expand selection in delimiters fast
 (use-package expand-region)
+
+;; Helpful for examining bindings on the fly
+(use-package command-log-mode)
 
 ;; SELF-DISCOVERABILITY FEATURE, shows commands that follow
 ;; currently invoked binding
@@ -410,6 +417,7 @@
 (define-key evil-normal-state-map (kbd "F") 'evil-snipe-F)
 (define-key evil-normal-state-map (kbd "K") 'evil-previous-line-first-non-blank)
 (define-key evil-normal-state-map (kbd "J") 'evil-next-line-first-non-blank)
+(define-key evil-normal-state-map (kbd "<backspace>") 'pop-global-mark)
 
 
 ;; multi cursor
