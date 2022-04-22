@@ -29,6 +29,7 @@
 
 ;; SETTING FONT
 (set-face-attribute 'default nil :font "Iosevka Nerd Font Mono-16:normal")
+(set-face-attribute 'mode-line nil :font "Iosevka Nerd Font Mono-16:normal")
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
