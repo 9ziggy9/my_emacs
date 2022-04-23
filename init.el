@@ -397,9 +397,7 @@
   (setq projectile-switch-project-action #'projectile-dired))
 (use-package counsel-projectile)
 
-(use-package vterm
-  :ensure t)
-
+;; custom functions
 (defun scratch-toggle ()
   (interactive)
   (if (string= "*scratch*" (buffer-name))
@@ -462,7 +460,8 @@
 (define-key evil-normal-state-map (kbd "K") 'evil-previous-line-first-non-blank)
 (define-key evil-normal-state-map (kbd "J") 'evil-next-line-first-non-blank)
 (define-key evil-normal-state-map (kbd "<backspace>") 'pop-global-mark)
-
+(define-key evil-normal-state-map (kbd "<tab>") 'mode-line-other-buffer)
+(define-key evil-normal-state-map (kbd "M-<tab>") 'previous-buffer)
 
 ;; multi cursor
 (define-key evil-normal-state-map (kbd "C-j") 'evil-mc-make-cursor-move-next-line)
