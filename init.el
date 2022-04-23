@@ -32,9 +32,7 @@
 ;; (set-face-attribute 'mode-line nil :font "Iosevka Nerd Font Mono-16:normal")
 (defun my-frame-init ()
   (set-face-attribute 'default nil :font "Iosevka Nerd Font Mono-16:normal")
-  (set-face-attribute 'mode-line nil :font "Iosevka Nerd Font Mono-16:normal")
-  (add-hook 'emacs-startup-hook 'eshell))
-(add-hook 'emacs-start-up-hook 'eshell)
+  (set-face-attribute 'mode-line nil :font "Iosevka Nerd Font Mono-16:normal"))
 
 (defun set-my-fira ()
   (interactive)
