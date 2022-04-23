@@ -34,6 +34,7 @@
   (set-face-attribute 'default nil :font "Iosevka Nerd Font Mono-16:normal")
   (set-face-attribute 'mode-line nil :font "Iosevka Nerd Font Mono-16:normal")
   (add-hook 'emacs-startup-hook 'eshell))
+(add-hook 'emacs-start-up-hook 'eshell)
 
 (defun set-my-fira ()
   (interactive)
@@ -54,6 +55,7 @@
 (global-set-key (kbd "C-=") 'text-scale-increase)
 (global-set-key (kbd "C-\-") 'text-scale-decrease)
 (global-set-key (kbd "C-<return>") 'make-frame)
+(global-set-key (kbd "<print>") 'scratch-toggle)
 
 ;; AUTOFOCUS/MAXIMIZE HELP WINDOWS
 (add-to-list 'display-buffer-alist
@@ -412,7 +414,6 @@
   :prefix "SPC")
 (my-leader-def
     "RET" '(recenter-top-bottom :which-key "recenter on current line")
-    "N" '(scratch-toggle :which-key "scratchpad")
     "p" '(counsel-projectile-find-file :which-key "find projectile project")
     "g" '(counsel-projectile-ag :which-key "grep projectile project")
     "t" '(term :which-key "terminal")
