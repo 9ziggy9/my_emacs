@@ -1,0 +1,1 @@
+alias open for i in ${eshell-flatten-list $*} {find-file $i}

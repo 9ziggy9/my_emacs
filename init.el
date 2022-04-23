@@ -32,7 +32,8 @@
 ;; (set-face-attribute 'mode-line nil :font "Iosevka Nerd Font Mono-16:normal")
 (defun my-frame-init ()
   (set-face-attribute 'default nil :font "Iosevka Nerd Font Mono-16:normal")
-  (set-face-attribute 'mode-line nil :font "Iosevka Nerd Font Mono-16:normal"))
+  (set-face-attribute 'mode-line nil :font "Iosevka Nerd Font Mono-16:normal")
+  (add-hook 'emacs-startup-hook 'eshell))
 
 (defun set-my-fira ()
   (interactive)
@@ -177,8 +178,10 @@
   (setq evil-jump-cross-buffers t)
   ;; comeback and set avy-window-all
   :config
+  (evil-ex-define-cmd "q" 'kill-this-buffer)
   (evil-set-undo-system 'undo-tree)
   (evil-mode 1))
+
 
 ;;yepperinthepepper
 
