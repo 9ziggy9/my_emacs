@@ -28,8 +28,25 @@
 (setq x-select-enable-clipboard t)
 
 ;; SETTING FONT
-(set-face-attribute 'default nil :font "Iosevka Nerd Font Mono-16:normal")
-(set-face-attribute 'mode-line nil :font "Iosevka Nerd Font Mono-16:normal")
+;; (set-face-attribute 'default nil :font "Iosevka Nerd Font Mono-16:normal")
+;; (set-face-attribute 'mode-line nil :font "Iosevka Nerd Font Mono-16:normal")
+(defun my-frame-init ()
+  (set-face-attribute 'default nil :font "Iosevka Nerd Font Mono-16:normal")
+  (set-face-attribute 'mode-line nil :font "Iosevka Nerd Font Mono-16:normal"))
+
+(defun set-my-fira ()
+  (interactive)
+  (set-frame-attribute 'default nil '(:font "Fira Code Nerd Font Mono-20:normal")))
+
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+	      (lambda (frame)
+		(select-frame frame)
+		(my-frame-init)))
+  (my-frame-init))
+
+;; AFTER FRAME HOOK
+;; (add-hook 'after-make-frame-functions)
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -375,6 +392,9 @@
   (setq projectile-switch-project-action #'projectile-dired))
 (use-package counsel-projectile)
 
+(use-package vterm
+  :ensure t)
+
 (defun scratch-toggle ()
   (interactive)
   (if (string= "*scratch*" (buffer-name))
@@ -468,7 +488,7 @@
    ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(origami-mode yafolding company-math counsel-projectile projectile evil-snipe org-roam org-bullets expand-region go-mode company typescript-mode dap-mode hindent haskell-mode web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
+   '(vterm origami-mode yafolding company-math counsel-projectile projectile evil-snipe org-roam org-bullets expand-region go-mode company typescript-mode dap-mode hindent haskell-mode web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
