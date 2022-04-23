@@ -398,6 +398,16 @@
 
 ;; custom functions
 ;; evil write and close BUFFER
+(evil-define-command zig/evil-write-and-kill-buffer (path)
+  "Save and kill buffer."
+  :repeat nil
+  :move-point nil
+  (interactive "<f>")
+  (if (zerop (length path))
+      (save-buffer)
+    (write-file path))
+  (kill-buffer (current-buffer)))
+(evil-ex-define-cmd "wq" 'zig/evil-write-and-kill-buffer)
 
 ;; generic buffer toggler
 (defun zig/toggler (string)
