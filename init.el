@@ -53,7 +53,8 @@
 (global-set-key (kbd "C-=") 'text-scale-increase)
 (global-set-key (kbd "C-\-") 'text-scale-decrease)
 (global-set-key (kbd "C-<return>") 'make-frame)
-(global-set-key (kbd "<print>") 'scratch-toggle)
+(global-set-key (kbd "<print>") (lambda () (interactive) (zig/toggler "*scratch*")))
+(global-set-key (kbd "C-<tab>") (lambda () (interactive) (zig/toggler "*eshell*")))
 
 ;; AUTOFOCUS/MAXIMIZE HELP WINDOWS
 (add-to-list 'display-buffer-alist
@@ -396,11 +397,15 @@
 (use-package counsel-projectile)
 
 ;; custom functions
-(defun scratch-toggle ()
+;; evil write and close BUFFER
+
+;; generic buffer toggler
+(defun zig/toggler (string)
   (interactive)
-  (if (string= "*scratch*" (buffer-name))
+  (if (string= string (buffer-name))
       (previous-buffer)
-    (switch-to-buffer "*scratch*")))
+    "t" '(eshell :which-key '((lambda () (interactive) (zig/toggler "*eshell*"))))
+    (switch-to-buffer string)))
 
 ;; KEYBINDINGS
 ;; general SPC buffer
@@ -412,7 +417,6 @@
     "RET" '(recenter-top-bottom :which-key "recenter on current line")
     "p" '(counsel-projectile-find-file :which-key "find projectile project")
     "g" '(counsel-projectile-ag :which-key "grep projectile project")
-    "t" '(term :which-key "terminal")
     "S" '(swiper-all :which-key "search all buffers")
     "s" '(swiper :which-key "search file")
     "c" 'compile
