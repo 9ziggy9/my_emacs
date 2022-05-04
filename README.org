@@ -25,6 +25,7 @@ in a project directory. I suppose this makes sense, as we will likely want diffe
 #+BEGIN_SRC
 M-x lsp-workspace-blacklist-remove
 #+END_SRC
+TODO: general vmap, imap, etc error, huh?
 
 ** RESOURCES
    SystemCrafter videos, obviously, some code stolen from Tsoding Daily. Helpful config walkthrough, where I stole web dev stuff:
