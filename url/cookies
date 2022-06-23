@@ -1,0 +1,17 @@
+;; Emacs-W3 HTTP cookies file
+;; Automatically generated file!!! DO NOT EDIT!!!
+
+(setq url-cookie-storage
+ 'nil)
+(setq url-cookie-secure-storage
+ '((".visualstudio.com"
+  [url-cookie "VstsSession" "%7B%22PersistentSessionId%22%3A%2255dd51e2-f80b-4fdc-a673-8f91912040c8%22%2C%22PendingAuthenticationSessionId%22%3A%2200000000-0000-0000-0000-000000000000%22%2C%22CurrentAuthenticationSessionId%22%3A%2200000000-0000-0000-0000-000000000000%22%2C%22SignInState%22%3A%7B%7D%7D" "Thu, 04-May-2023 02:19:29 GMT" "/" ".visualstudio.com" t])
+ ("github.com"
+  [url-cookie "_octo" "GH1.1.467856194.1651630757" "Thu, 04 May 2023 02:19:17 GMT" "/" "github.com" t]
+  [url-cookie "logged_in" "no" "Thu, 04 May 2023 02:19:17 GMT" "/" "github.com" t]))
+)
+
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; End:

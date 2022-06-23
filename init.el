@@ -72,7 +72,7 @@
 
 ;; LINE NUMBERS
 (column-number-mode)
-(setq display-line-numbers-type 'relative)
+;; (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode t)
 ;; Hook for certain modes to disable line numbers
 (dolist (mode '(term-mode-hook
@@ -281,6 +281,7 @@
 ;; Improved javascript mode; better for ES6
 (use-package js2-mode
   :mode "\\.js\\'"
+  :mode "\\.mjs\\'"
   :hook (js2-mode . lsp-deferred)
   :config
   (setq-default js2-ignored-warnings '("msg.extra.trailing.comma")))
