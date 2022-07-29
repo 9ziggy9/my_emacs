@@ -10,6 +10,9 @@
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
 
+;; will this work?
+(auto-image-file-mode 1)
+
 ;; opacity
 (set-frame-parameter (selected-frame) 'alpha '(82 . 83))
 (add-to-list 'default-frame-alist '(alpha . (82 . 83)))
@@ -143,7 +146,7 @@
   :config
   (setq doom-themes-enable-bold t
       doom-themes-enable-italic t)
-  (load-theme 'doom-nord t))
+  (load-theme 'doom-material t))
 
 ;; RAINBOW PARENS
 (use-package rainbow-delimiters
@@ -309,6 +312,24 @@
   (setq web-mode-engines-alist
         '(("django" . "focus/.*\\.html\\'")
           ("ctemplate" . "realtimecrm/.*\\.html\\'"))))
+(use-package emmet-mode
+  :after(web-mode css-mode scss-mode)
+  :commands (emmet-mode emmet-expand-line yas/insert-snippet yas-insert-snippet company-complete)
+  :config
+  (setq emmet-move-cursor-between-quotes t)
+  (add-hook 'emmet-mode-hook (lambda () (setq emmet-indent-after-insert nil)))
+  (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+  (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+  (setq emmet-indentation 2)
+  (unbind-key "C-M-<left>" emmet-mode-keymap)
+  (unbind-key "C-M-<right>" emmet-mode-keymap)
+  :bind
+  ("C-j" . emmet-expand-line)
+  ((:map emmet-mode-keymap
+	  ("C-c [" . emmet-prev-edit-point)
+	  ("C-c ]" . emmet-next-edit-point))))
+
+
 ;;beautify stuff, make sure beautify is installed with npm install -g js-beautify
 ;;probably won't use this, but it's here since bindings aren't taken
 (use-package web-beautify
@@ -512,9 +533,11 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
+ '(custom-safe-themes
+   '("d47f868fd34613bd1fc11721fe055f26fd163426a299d45ce69bef1f109e1e71" "e6f3a4a582ffb5de0471c9b640a5f0212ccf258a987ba421ae2659f1eaa39b09" "da186cce19b5aed3f6a2316845583dbee76aea9255ea0da857d1c058ff003546" "7a7b1d475b42c1a0b61f3b1d1225dd249ffa1abb1b7f726aec59ac7ca3bf4dae" "e8df30cd7fb42e56a4efc585540a2e63b0c6eeb9f4dc053373e05d774332fc13" "76ed126dd3c3b653601ec8447f28d8e71a59be07d010cd96c55794c3008df4d7" "b5803dfb0e4b6b71f309606587dd88651efe0972a5be16ece6a958b197caeed8" "234dbb732ef054b109a9e5ee5b499632c63cc24f7c2383a849815dacc1727cb6" "8146edab0de2007a99a2361041015331af706e7907de9d6a330a3493a541e5a6" "84b14a0a41bb2728568d40c545280dbe7d6891221e7fbe7c2b1c54a3f5959289" "a9a67b318b7417adbedaab02f05fa679973e9718d9d26075c6235b1f0db703c8" "cbdf8c2e1b2b5c15b34ddb5063f1b21514c7169ff20e081d39cf57ffee89bc1e" default))
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(paredit racket-mode vterm origami-mode yafolding company-math counsel-projectile projectile evil-snipe org-roam org-bullets expand-region go-mode company typescript-mode dap-mode hindent haskell-mode web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
+   '(emmet-mode paredit racket-mode vterm origami-mode yafolding company-math counsel-projectile projectile evil-snipe org-roam org-bullets expand-region go-mode company typescript-mode dap-mode hindent haskell-mode web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
