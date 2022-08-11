@@ -483,7 +483,6 @@
     "S" '(swiper-all :which-key "search all buffers")
     "s" '(swiper :which-key "search file")
     "c" 'compile
-    "\\" 'shell-command-on-region
     "C" '((lambda () (interactive) (find-file "~/.emacs.d/init.el")) 
 	  :which-key "config file")
     "ee" '(eval-buffer :which-key "evaluate buffer")
@@ -539,6 +538,9 @@
 						     (evil-multiedit-abort)))
 ;; commenting in visual select
 (define-key evil-visual-state-map (kbd "C") 'comment-or-uncomment-region)
+
+;; evaluate in shell
+(define-key evil-visual-state-map (kbd "|") 'shell-command-on-region)
 
 ;; HYDRA BINDINGS
 ;; (use-package hydra)
