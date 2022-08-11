@@ -359,7 +359,28 @@
 
 ;; HASKELL mode -- THERE BE DRAGONS HERE FOR ARCH USERS
 (use-package haskell-mode)
-(use-package hindent) ;; haskell indentation help
+;; stolen to make o work in haskell mode...
+ (with-eval-after-load "haskell-mode"
+    ;; This changes the evil "O" and "o" keys for haskell-mode to make sure that
+    ;; indentation is done correctly. See
+    ;; https://github.com/haskell/haskell-mode/issues/1265#issuecomment-252492026.
+    (defun haskell-evil-open-above ()
+      (interactive)
+      (evil-digit-argument-or-evil-beginning-of-line)
+      (haskell-indentation-newline-and-indent)
+      (evil-previous-line)
+      (haskell-indentation-indent-line)
+      (evil-append-line nil))
+
+    (defun haskell-evil-open-below ()
+      (interactive)
+      (evil-append-line nil)
+      (haskell-indentation-newline-and-indent))
+
+    (evil-define-key 'normal haskell-mode-map
+      "o" 'haskell-evil-open-below
+      "O" 'haskell-evil-open-above)
+  )
 
 ;; PYTHON
 ;; (use-package python-mode
@@ -462,6 +483,7 @@
     "S" '(swiper-all :which-key "search all buffers")
     "s" '(swiper :which-key "search file")
     "c" 'compile
+    "\\" 'shell-command-on-region
     "C" '((lambda () (interactive) (find-file "~/.emacs.d/init.el")) 
 	  :which-key "config file")
     "ee" '(eval-buffer :which-key "evaluate buffer")
