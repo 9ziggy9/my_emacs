@@ -1,5 +1,6 @@
 ;; FULL ON TARD NOTES:
 ;; M-: to open eval buffer, I do not understand why I can't remember this
+
 ;; SELF-DISCOVERY
 ;; TO SEE LOG OF COMMANDS RAN: SPC-h-l
 
