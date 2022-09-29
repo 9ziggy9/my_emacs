@@ -62,8 +62,6 @@
 (global-set-key (kbd "C-=") 'text-scale-increase)
 (global-set-key (kbd "C-\-") 'text-scale-decrease)
 (global-set-key (kbd "C-<return>") 'make-frame)
-(global-set-key (kbd "<print>") (lambda () (interactive) (zig/toggler "*scratch*")))
-(global-set-key (kbd "C-<tab>") (lambda () (interactive) (zig/toggler "*eshell*")))
 
 ;; AUTOFOCUS/MAXIMIZE HELP WINDOWS
 (add-to-list 'display-buffer-alist
@@ -518,11 +516,9 @@
 
 ;; generic buffer toggler
 (defun zig/toggler (string)
-  (interactive)
   (if (string= string (buffer-name))
       (previous-buffer)
-    "t" '(eshell :which-key '((lambda () (interactive) (zig/toggler "*eshell*"))))
-    (switch-to-buffer string)))
+      (switch-to-buffer string)))
 
 ;; KEYBINDINGS
 ;; general SPC buffer
@@ -597,8 +593,19 @@
 (define-key evil-visual-state-map (kbd "|") 'shell-command-on-region)
 
 ;; HYPER KEY ZONE
-(global-set-key (kbd "H-<tab>") (lambda () (interactive) (zig/toggler "*eshell*")))
+;; TOGGLING/POPUPS
+(global-set-key (kbd "H-s") (lambda () (interactive) (zig/toggler "*scratch*")))
+(global-set-key (kbd "H-d") (lambda () (interactive) (zig/toggler "*eshell*")))
+;; NOTES
 (global-set-key (kbd "H-n") #'org-roam-node-find)
+;; BUFFERS
+(global-set-key (kbd "H-b") #'counsel-switch-buffer)
+(global-set-key (kbd "H-x") #'kill-buffer-and-window)
+(global-set-key (kbd "H-,") #'previous-buffer)
+(global-set-key (kbd "H-.") #'next-buffer)
+;; PAGE UP / DOWN
+(global-set-key (kbd "H-k") #'evil-scroll-page-up)
+(global-set-key (kbd "H-j") #'evil-scroll-page-down)
 
 ;; HYDRA BINDINGS
 ;; (use-package hydra)
