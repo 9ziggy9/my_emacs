@@ -1,5 +1,7 @@
 ;; FULL ON TARD NOTES:
 ;; M-: to open eval buffer, I do not understand why I can't remember this
+;; SELF-DISCOVERY
+;; TO SEE LOG OF COMMANDS RAN: SPC-h-l
 
 ;; DISABLE STUPID SCROLLBARS AND SUCH
 (setq inhibit-startup-message t)
@@ -61,6 +63,7 @@
 (global-set-key (kbd "C-<return>") 'make-frame)
 (global-set-key (kbd "<print>") (lambda () (interactive) (zig/toggler "*scratch*")))
 (global-set-key (kbd "C-<tab>") (lambda () (interactive) (zig/toggler "*eshell*")))
+(global-set-key (kbd "H-<tab>") (lambda () (interactive) (zig/toggler "*eshell*")))
 
 ;; AUTOFOCUS/MAXIMIZE HELP WINDOWS
 (add-to-list 'display-buffer-alist
