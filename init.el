@@ -1,3 +1,6 @@
+;; FULL ON TARD NOTES:
+;; M-: to open eval buffer, I do not understand why I can't remember this
+
 ;; DISABLE STUPID SCROLLBARS AND SUCH
 (setq inhibit-startup-message t)
 (scroll-bar-mode -1) ;; Disable visible scrollbar
@@ -14,8 +17,8 @@
 (auto-image-file-mode 1)
 
 ;; opacity
-(set-frame-parameter (selected-frame) 'alpha '(82 . 83))
-(add-to-list 'default-frame-alist '(alpha . (82 . 83)))
+(set-frame-parameter (selected-frame) 'alpha '(97 . 96))
+(add-to-list 'default-frame-alist '(alpha . (97 . 96)))
 
 ;; CENTRALIZE UGLY BACKUPS
 (setq backup-directory-alist
@@ -83,9 +86,9 @@
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;; Helpful mode hook for docs
-(dolist (mode '(woman-mode-hook
-		help-mode-hook))
-  (add-hook mode (lambda () (helpful-mode))))
+;; (dolist (mode '(woman-mode-hook
+;; 		help-mode-hook))
+;;   (add-hook mode (lambda () (helpful-mode))))
 
 ;; PACKAGE MANAGEMENT
 (require 'package)
@@ -106,6 +109,21 @@
 
 ;; SEARCH: find in current file! Bound to C-s
 (use-package swiper)
+
+;; AUCTeX
+;; TODO: add auto safe, to get some auto refreshage
+;; C-c C-e -- menu to add document elements
+;; C-c C-c -- compile/view
+(use-package auctex
+  :ensure t
+  :defer t
+  :config
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  :hook (LaTeX-mode .
+    (lambda ()
+      (push (list 'output-pdf "Evince")
+	    TeX-view-program-selection))))
 
 ;; particularly useful for switching themes: M-x counsel themes
 (use-package counsel
@@ -594,7 +612,7 @@
    '("d47f868fd34613bd1fc11721fe055f26fd163426a299d45ce69bef1f109e1e71" "e6f3a4a582ffb5de0471c9b640a5f0212ccf258a987ba421ae2659f1eaa39b09" "da186cce19b5aed3f6a2316845583dbee76aea9255ea0da857d1c058ff003546" "7a7b1d475b42c1a0b61f3b1d1225dd249ffa1abb1b7f726aec59ac7ca3bf4dae" "e8df30cd7fb42e56a4efc585540a2e63b0c6eeb9f4dc053373e05d774332fc13" "76ed126dd3c3b653601ec8447f28d8e71a59be07d010cd96c55794c3008df4d7" "b5803dfb0e4b6b71f309606587dd88651efe0972a5be16ece6a958b197caeed8" "234dbb732ef054b109a9e5ee5b499632c63cc24f7c2383a849815dacc1727cb6" "8146edab0de2007a99a2361041015331af706e7907de9d6a330a3493a541e5a6" "84b14a0a41bb2728568d40c545280dbe7d6891221e7fbe7c2b1c54a3f5959289" "a9a67b318b7417adbedaab02f05fa679973e9718d9d26075c6235b1f0db703c8" "cbdf8c2e1b2b5c15b34ddb5063f1b21514c7169ff20e081d39cf57ffee89bc1e" default))
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(racer flycheck-rust cargo rust-mode emmet-mode paredit racket-mode vterm origami-mode yafolding company-math counsel-projectile projectile evil-snipe org-roam org-bullets expand-region go-mode company typescript-mode dap-mode hindent haskell-mode web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
+   '(preview-latex auctex racer flycheck-rust cargo rust-mode emmet-mode paredit racket-mode vterm origami-mode yafolding company-math counsel-projectile projectile evil-snipe org-roam org-bullets expand-region go-mode company typescript-mode dap-mode hindent haskell-mode web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
