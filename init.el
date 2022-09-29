@@ -64,7 +64,6 @@
 (global-set-key (kbd "C-<return>") 'make-frame)
 (global-set-key (kbd "<print>") (lambda () (interactive) (zig/toggler "*scratch*")))
 (global-set-key (kbd "C-<tab>") (lambda () (interactive) (zig/toggler "*eshell*")))
-(global-set-key (kbd "H-<tab>") (lambda () (interactive) (zig/toggler "*eshell*")))
 
 ;; AUTOFOCUS/MAXIMIZE HELP WINDOWS
 (add-to-list 'display-buffer-alist
@@ -596,6 +595,10 @@
 
 ;; evaluate in shell
 (define-key evil-visual-state-map (kbd "|") 'shell-command-on-region)
+
+;; HYPER KEY ZONE
+(global-set-key (kbd "H-<tab>") (lambda () (interactive) (zig/toggler "*eshell*")))
+(global-set-key (kbd "H-n") #'org-roam-node-find)
 
 ;; HYDRA BINDINGS
 ;; (use-package hydra)
