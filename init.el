@@ -16,12 +16,15 @@
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
 
+;; close buffers of ghost files
+(global-auto-revert-mode t)
+
 ;; will this work?
 (auto-image-file-mode 1)
 
 ;; opacity
-(set-frame-parameter (selected-frame) 'alpha '(97 . 96))
-(add-to-list 'default-frame-alist '(alpha . (97 . 96)))
+(set-frame-parameter (selected-frame) 'alpha '(99 . 99))
+(add-to-list 'default-frame-alist '(alpha . (99 . 99)))
 
 ;; CENTRALIZE UGLY BACKUPS
 (setq backup-directory-alist
@@ -166,7 +169,7 @@
   :config
   (setq doom-themes-enable-bold t
       doom-themes-enable-italic t)
-  (load-theme 'doom-material t))
+  (load-theme 'doom-solarized-dark t))
 
 ;; RAINBOW PARENS
 (use-package rainbow-delimiters
@@ -278,6 +281,15 @@
   :config
   (org-roam-setup))
 
+;; MARKDOWN MODE
+(use-package markdown-mode
+  :ensure t
+  :mode ("\\.md\\'" . markdown-mode)
+  :init (setq markdown-command "pandoc -f markdown -t html")
+  :config
+  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)))
+
 ;; YAS SNIPPETS
 (use-package yasnippet
     :config
@@ -304,6 +316,11 @@
 (add-hook 'lsp-mode-hook (lambda ()
 			 (remove-hook 'before-save-hook #'lsp-format-buffer)))
 
+;; SQL STUFF
+;; (add-hook 'sqli-mode-hook (lambda () (define-key sqli-mode-map (kbd "<tab>") 'ace-window)))
+
+;; (use-package c-mode)
+
 ;; JAVASCRIPT
 ;; better indent level
 (setq-default js-indent-level 2)
@@ -316,6 +333,9 @@
   (setq-default js2-ignored-warnings '("msg.extra.trailing.comma")))
 ;; for react/JSX stuff
 (use-package rjsx-mode)
+
+;; JSON
+(use-package json-mode)
 
 ;; TYPESCRIPT -- eh, why not?
 (use-package typescript-mode
@@ -401,6 +421,17 @@
       "o" 'haskell-evil-open-below
       "O" 'haskell-evil-open-above)
   )
+
+(use-package julia-mode
+  :ensure t)
+
+(use-package zig-mode
+  :ensure t
+  :mode "\\.zig\\'"
+  :hook (zig-mode . (lambda () (setq-local tab-width 4)))
+  :config
+  (add-to-list 'zig-indent-basic-alist '(brace block-open . (after)))
+  (add-to-list 'zig-indent-basic-alist '(brace block-close . (before))))
 
 ;; PYTHON
 ;; (use-package python-mode
@@ -583,7 +614,7 @@
 (define-key evil-normal-state-map (kbd "K") 'evil-previous-line-first-non-blank)
 (define-key evil-normal-state-map (kbd "J") 'evil-next-line-first-non-blank)
 (define-key evil-normal-state-map (kbd "<backspace>") 'pop-global-mark)
-(define-key evil-normal-state-map (kbd "<tab>") 'mode-line-other-buffer)
+(define-key evil-normal-state-map (kbd "<tab>") 'ace-window)
 (define-key evil-normal-state-map (kbd "M-<tab>") 'previous-buffer)
 
 ;; multi cursor
@@ -631,13 +662,15 @@
  '(ansi-color-names-vector
    ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
  '(custom-safe-themes
-   '("d47f868fd34613bd1fc11721fe055f26fd163426a299d45ce69bef1f109e1e71" "e6f3a4a582ffb5de0471c9b640a5f0212ccf258a987ba421ae2659f1eaa39b09" "da186cce19b5aed3f6a2316845583dbee76aea9255ea0da857d1c058ff003546" "7a7b1d475b42c1a0b61f3b1d1225dd249ffa1abb1b7f726aec59ac7ca3bf4dae" "e8df30cd7fb42e56a4efc585540a2e63b0c6eeb9f4dc053373e05d774332fc13" "76ed126dd3c3b653601ec8447f28d8e71a59be07d010cd96c55794c3008df4d7" "b5803dfb0e4b6b71f309606587dd88651efe0972a5be16ece6a958b197caeed8" "234dbb732ef054b109a9e5ee5b499632c63cc24f7c2383a849815dacc1727cb6" "8146edab0de2007a99a2361041015331af706e7907de9d6a330a3493a541e5a6" "84b14a0a41bb2728568d40c545280dbe7d6891221e7fbe7c2b1c54a3f5959289" "a9a67b318b7417adbedaab02f05fa679973e9718d9d26075c6235b1f0db703c8" "cbdf8c2e1b2b5c15b34ddb5063f1b21514c7169ff20e081d39cf57ffee89bc1e" default))
+   '("cf922a7a5c514fad79c483048257c5d8f242b21987af0db813d3f0b138dfaf53" "028c226411a386abc7f7a0fba1a2ebfae5fe69e2a816f54898df41a6a3412bb5" "613aedadd3b9e2554f39afe760708fc3285bf594f6447822dd29f947f0775d6c" "d47f868fd34613bd1fc11721fe055f26fd163426a299d45ce69bef1f109e1e71" "e6f3a4a582ffb5de0471c9b640a5f0212ccf258a987ba421ae2659f1eaa39b09" "da186cce19b5aed3f6a2316845583dbee76aea9255ea0da857d1c058ff003546" "7a7b1d475b42c1a0b61f3b1d1225dd249ffa1abb1b7f726aec59ac7ca3bf4dae" "e8df30cd7fb42e56a4efc585540a2e63b0c6eeb9f4dc053373e05d774332fc13" "76ed126dd3c3b653601ec8447f28d8e71a59be07d010cd96c55794c3008df4d7" "b5803dfb0e4b6b71f309606587dd88651efe0972a5be16ece6a958b197caeed8" "234dbb732ef054b109a9e5ee5b499632c63cc24f7c2383a849815dacc1727cb6" "8146edab0de2007a99a2361041015331af706e7907de9d6a330a3493a541e5a6" "84b14a0a41bb2728568d40c545280dbe7d6891221e7fbe7c2b1c54a3f5959289" "a9a67b318b7417adbedaab02f05fa679973e9718d9d26075c6235b1f0db703c8" "cbdf8c2e1b2b5c15b34ddb5063f1b21514c7169ff20e081d39cf57ffee89bc1e" default))
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(geiser-racket geiser-mit elm-mode org-make-toc emacs-prisma-mode/prisma-mode preview-latex auctex racer flycheck-rust cargo rust-mode emmet-mode paredit racket-mode vterm origami-mode yafolding company-math counsel-projectile projectile evil-snipe org-roam org-bullets expand-region go-mode company typescript-mode dap-mode hindent haskell-mode web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+   '(zig-mode json-mode julia-mode geiser-racket geiser-mit elm-mode org-make-toc emacs-prisma-mode/prisma-mode preview-latex auctex racer flycheck-rust cargo rust-mode emmet-mode paredit racket-mode vterm origami-mode yafolding company-math counsel-projectile projectile evil-snipe org-roam org-bullets expand-region go-mode company typescript-mode dap-mode hindent haskell-mode web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package))
+ '(warning-suppress-types
+   '((use-package)
+     (use-package)
+     (use-package)
+     (use-package)
+     (use-package)
+     (use-package))))
+
