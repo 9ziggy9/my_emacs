@@ -1,6 +1,3 @@
-;; FULL ON TARD NOTES:
-;; M-: to open eval buffer, I do not understand why I can't remember this
-
 ;; SELF-DISCOVERY
 ;; TO SEE LOG OF COMMANDS RAN: SPC-h-l
 
@@ -215,9 +212,6 @@
   (evil-set-undo-system 'undo-tree)
   (evil-mode 1))
 
-
-;;yepperinthepepper
-
 (use-package evil-collection
   :after evil
   :config
@@ -226,11 +220,6 @@
   (setq avy-all-windows-alt t)
   (setq avy-background t)
   (evil-collection-init))
-
-;; (use-package evil-easymotion
-;;   :after evil
-;;   :config
-;;   (setq avy-))
 
 (use-package evil-snipe
   :init (evil-snipe-mode +1))
@@ -316,10 +305,7 @@
 (add-hook 'lsp-mode-hook (lambda ()
 			 (remove-hook 'before-save-hook #'lsp-format-buffer)))
 
-;; SQL STUFF
-;; (add-hook 'sqli-mode-hook (lambda () (define-key sqli-mode-map (kbd "<tab>") 'ace-window)))
-
-;; (use-package c-mode)
+(use-package c-mode)
 
 ;; JAVASCRIPT
 ;; better indent level
@@ -331,6 +317,7 @@
   :hook (js2-mode . lsp-deferred)
   :config
   (setq-default js2-ignored-warnings '("msg.extra.trailing.comma")))
+
 ;; for react/JSX stuff
 (use-package rjsx-mode)
 
@@ -352,23 +339,6 @@
   (setq web-mode-engines-alist
         '(("django" . "focus/.*\\.html\\'")
           ("ctemplate" . "realtimecrm/.*\\.html\\'"))))
-(use-package emmet-mode
-  :after(web-mode css-mode scss-mode)
-  :commands (emmet-mode emmet-expand-line yas/insert-snippet yas-insert-snippet company-complete)
-  :config
-  (setq emmet-move-cursor-between-quotes t)
-  (add-hook 'emmet-mode-hook (lambda () (setq emmet-indent-after-insert nil)))
-  (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
-  (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
-  (setq emmet-indentation 2)
-  (unbind-key "C-M-<left>" emmet-mode-keymap)
-  (unbind-key "C-M-<right>" emmet-mode-keymap)
-  :bind
-  ("C-j" . emmet-expand-line)
-  ((:map emmet-mode-keymap
-	  ("C-c [" . emmet-prev-edit-point)
-	  ("C-c ]" . emmet-next-edit-point))))
-
 
 ;;beautify stuff, make sure beautify is installed with npm install -g js-beautify
 ;;probably won't use this, but it's here since bindings aren't taken
@@ -377,89 +347,6 @@
          ("C-c b" . web-beautify-html)
          :map js2-mode-map
          ("C-c b" . web-beautify-js)))
-
-;; DEBUGGING
-(use-package dap-mode
-  ;; Uncomment the config below if you want all UI panes to be hidden by default!
-  ;; :custom
-  ;; (lsp-enable-dap-auto-configure nil)
-  ;; :config
-  ;; (dap-ui-mode 1)
-  :commands dap-debug
-  :config
-  ;; Set up Node debugging
-  (require 'dap-node)
-  (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; Bind `C-c l d` to `dap-hydra` for easy access
-  (general-define-key
-    :keymaps 'lsp-mode-map
-    :prefix lsp-keymap-prefix
-    "d" '(dap-hydra t :wk "debugger")))
-
-;; HASKELL mode -- THERE BE DRAGONS HERE FOR ARCH USERS
-(use-package haskell-mode)
-;; stolen to make o work in haskell mode...
- (with-eval-after-load "haskell-mode"
-    ;; This changes the evil "O" and "o" keys for haskell-mode to make sure that
-    ;; indentation is done correctly. See
-    ;; https://github.com/haskell/haskell-mode/issues/1265#issuecomment-252492026.
-    (defun haskell-evil-open-above ()
-      (interactive)
-      (evil-digit-argument-or-evil-beginning-of-line)
-      (haskell-indentation-newline-and-indent)
-      (evil-previous-line)
-      (haskell-indentation-indent-line)
-      (evil-append-line nil))
-
-    (defun haskell-evil-open-below ()
-      (interactive)
-      (evil-append-line nil)
-      (haskell-indentation-newline-and-indent))
-
-    (evil-define-key 'normal haskell-mode-map
-      "o" 'haskell-evil-open-below
-      "O" 'haskell-evil-open-above)
-  )
-
-(use-package julia-mode
-  :ensure t)
-
-(use-package zig-mode
-  :ensure t
-  :mode "\\.zig\\'"
-  :hook (zig-mode . (lambda () (setq-local tab-width 4)))
-  :config
-  (add-to-list 'zig-indent-basic-alist '(brace block-open . (after)))
-  (add-to-list 'zig-indent-basic-alist '(brace block-close . (before))))
-
-;; PYTHON
-;; (use-package python-mode
-;;   :ensure t
-;;   :hook (python-mode . lsp-deferred)
-;;   :custom
-;;   ;; NOTE: Set these if Python 3 is called "python3" on your system!
-;;   ;; (python-shell-interpreter "python3")
-;;   ;; (dap-python-executable "python3")
-;;   (dap-python-debugger 'debugpy)
-;;   :config
-;;   (require 'dap-python))
-
-;; (use-package pyvenv
-;;   :after python-mode
-;;   :config
-;;   (pyvenv-mode 1))
-
-;; RACKET
-(use-package racket-mode
-  :ensure t)
-
-(use-package geiser-racket
-  :ensure t)
-
-;; ELM
-(use-package elm-mode
-  :ensure t)
 
 ;; GO
 (use-package go-mode
@@ -665,7 +552,7 @@
    '("cf922a7a5c514fad79c483048257c5d8f242b21987af0db813d3f0b138dfaf53" "028c226411a386abc7f7a0fba1a2ebfae5fe69e2a816f54898df41a6a3412bb5" "613aedadd3b9e2554f39afe760708fc3285bf594f6447822dd29f947f0775d6c" "d47f868fd34613bd1fc11721fe055f26fd163426a299d45ce69bef1f109e1e71" "e6f3a4a582ffb5de0471c9b640a5f0212ccf258a987ba421ae2659f1eaa39b09" "da186cce19b5aed3f6a2316845583dbee76aea9255ea0da857d1c058ff003546" "7a7b1d475b42c1a0b61f3b1d1225dd249ffa1abb1b7f726aec59ac7ca3bf4dae" "e8df30cd7fb42e56a4efc585540a2e63b0c6eeb9f4dc053373e05d774332fc13" "76ed126dd3c3b653601ec8447f28d8e71a59be07d010cd96c55794c3008df4d7" "b5803dfb0e4b6b71f309606587dd88651efe0972a5be16ece6a958b197caeed8" "234dbb732ef054b109a9e5ee5b499632c63cc24f7c2383a849815dacc1727cb6" "8146edab0de2007a99a2361041015331af706e7907de9d6a330a3493a541e5a6" "84b14a0a41bb2728568d40c545280dbe7d6891221e7fbe7c2b1c54a3f5959289" "a9a67b318b7417adbedaab02f05fa679973e9718d9d26075c6235b1f0db703c8" "cbdf8c2e1b2b5c15b34ddb5063f1b21514c7169ff20e081d39cf57ffee89bc1e" default))
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(zig-mode json-mode julia-mode geiser-racket geiser-mit elm-mode org-make-toc emacs-prisma-mode/prisma-mode preview-latex auctex racer flycheck-rust cargo rust-mode emmet-mode paredit racket-mode vterm origami-mode yafolding company-math counsel-projectile projectile evil-snipe org-roam org-bullets expand-region go-mode company typescript-mode dap-mode hindent haskell-mode web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package))
+   '(c-mode zig-mode json-mode julia-mode geiser-racket geiser-mit elm-mode org-make-toc emacs-prisma-mode/prisma-mode preview-latex auctex racer flycheck-rust cargo rust-mode emmet-mode paredit racket-mode vterm origami-mode yafolding company-math counsel-projectile projectile evil-snipe org-roam org-bullets expand-region go-mode company typescript-mode dap-mode hindent haskell-mode web-beautify web-mode rjsx-mode fzf js2-mode yasnippet-snippets yasnippet pyvenv python-mode manpages manpges ccls lsp-mode evil-surround wrap-region evil-multiedit hydra evil-mc fixmee autopair multiple-cursors evil-easymotion helpful evil-collection evil general blackboard-theme kooten-theme all-the-icons ivy-rich which-key rainbow-delimiters green-is-the-new-black-theme green-phosphor-theme counsel swiper ivy command-log-mode use-package))
  '(warning-suppress-types
    '((use-package)
      (use-package)
@@ -673,4 +560,9 @@
      (use-package)
      (use-package)
      (use-package))))
-
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
